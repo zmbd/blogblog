@@ -10,7 +10,7 @@ const Header = (props: propTypes) => {
   const noscrollStyles = "drop-shadow-none h-16";
   return (
     <div
-      className={`header bg-white flex justify-center items-center w-full h-16 fixed mb-16 duration-150 ease-out ${
+      className={`header z-10 bg-white flex justify-center items-center w-full h-16 fixed duration-150 ease-out ${
         props.scrolling ? scrolledStyles : noscrollStyles
       }`}
     >

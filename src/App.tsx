@@ -25,10 +25,37 @@ function App() {
   }, []);
 
   useLayoutEffect(() => {
+    const showContents = (entries: any) => {
+      entries.forEach((entry: any) => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add("active");
+        }
+      });
+    };
+    const observer = new IntersectionObserver(showContents, {
+      rootMargin: "-10%",
+      threshold: 0.0,
+    });
+
+    const items = document.querySelectorAll(".observer-item");
+    items.forEach((item: any) => {
+      observer.observe(item);
+    });
+  }, []);
+
+  useLayoutEffect(() => {
     const firstPage = document.getElementById("first-page");
     const bottom = firstPage?.getBoundingClientRect().bottom || 0;
     setFirstPageMarginBottom(window.innerHeight - bottom);
   }, [dimensions]);
+
+  const handleDownArrowClick = () => {
+    window.scrollTo({
+      top: window.innerHeight,
+      left: 0,
+      behavior: "smooth",
+    });
+  };
 
   return (
     <div className="w-screen h-screen flex flex-col justify-start items-center cursor-default font-sans">
@@ -74,10 +101,13 @@ function App() {
       </section>
       <div
         id="first-page"
-        className="w-16 animate-bounce-slow"
+        className="w-16 animate-bounce-slow rounded-full"
         style={{ marginBottom: `${firstPageMarginBottom}px` }}
       >
-        <button className="w-16 h-16 bg-primary-600 text-white rounded-full flex justify-center items-center text-4xl font-extralight">
+        <button
+          className="w-16 h-16 bg-primary-600 text-white rounded-full flex justify-center items-center text-4xl font-extralight"
+          onClick={handleDownArrowClick}
+        >
           &darr;
         </button>
       </div>

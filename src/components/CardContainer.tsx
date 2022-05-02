@@ -54,22 +54,24 @@ const CardContainer = (props: propTypes) => {
         />
       </div>
       <div
-        className={`${
+        className={` ${
           isEven ? "order-2" : "order-1"
-        } h-full flex flex-col justify-center items-start pl-12 ${
+        } flex flex-col justify-center items-start h-full pl-12 ${
           dynamicStyleParams.bgColor
         }`}
       >
-        <span
-          className={`text-sm font-normal my-2 ${dynamicStyleParams.secondaryText}`}
-        >
-          {post.writtenOn}, ADMIN
-        </span>
-        <span
-          className={`font-extrabold text-5xl ${dynamicStyleParams.primaryText} leading-tight`}
-        >
-          {post.name}
-        </span>
+        <div className="observer-item opacity-0 flex flex-col justify-center">
+          <span
+            className={`text-sm font-normal my-2 ${dynamicStyleParams.secondaryText}`}
+          >
+            {post.writtenOn}, ADMIN
+          </span>
+          <span
+            className={`font-extrabold text-5xl ${dynamicStyleParams.primaryText} leading-tight`}
+          >
+            {post.name}
+          </span>
+        </div>
       </div>
     </div>
   );

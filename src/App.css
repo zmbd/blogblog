@@ -16,3 +16,13 @@
   -webkit-font-smoothing: antialiased;
   font-weight: bold;
 }
+
+.observer-item {
+  transform: translateY(100%);
+}
+
+.active {
+  transition: all 0.5s ease-out;
+  transform: translateY(0%);
+  opacity: 1;
+}
