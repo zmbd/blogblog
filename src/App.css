@@ -11,7 +11,7 @@
 }
 
 .black-outline {
-  -webkit-text-stroke: 1.11px #090e11; /* stroke width and color */
+  -webkit-text-stroke: 1.11px #090e11;
   color: rgb(255, 255, 255);
   -webkit-font-smoothing: antialiased;
   font-weight: bold;

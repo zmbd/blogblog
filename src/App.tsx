@@ -46,7 +46,7 @@ function App() {
   useLayoutEffect(() => {
     const firstPage = document.getElementById("first-page");
     const bottom = firstPage?.getBoundingClientRect().bottom || 0;
-    setFirstPageMarginBottom(window.innerHeight - bottom);
+    setFirstPageMarginBottom(window.innerHeight - window.scrollY - bottom);
   }, [dimensions]);
 
   const handleDownArrowClick = () => {
