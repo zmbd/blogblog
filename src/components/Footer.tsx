@@ -1,3 +1,4 @@
+import { FooterListItem } from "./FooterListItem";
 import React from "react";
 
 import {
@@ -22,30 +23,10 @@ const Footer = () => {
           <div className="md:w-footer-item-2-md sm:w-full md:h-full sm:h-60 flex flex-col items-start p-2">
             <h3 className="text-white font-semibold text-lg pb-6">Lorem</h3>
             <ul className="text-grayish">
-              <li>
-                <div className="w-auto h-8 flex items-center justify-center">
-                  <span className="text-3xl font-semibold">&gt;</span>
-                  <span className="font-medium pl-1">Lorem</span>
-                </div>
-              </li>
-              <li>
-                <div className="w-auto h-8 flex items-center justify-center">
-                  <span className="text-3xl font-semibold">&gt;</span>
-                  <span className="font-medium pl-1">Lorem</span>
-                </div>
-              </li>
-              <li>
-                <div className="w-auto h-8 flex items-center justify-center">
-                  <span className="text-3xl font-semibold">&gt;</span>
-                  <span className="font-medium pl-1">Lorem</span>
-                </div>
-              </li>
-              <li>
-                <div className="w-auto h-8 flex items-center justify-center">
-                  <span className="text-3xl font-semibold">&gt;</span>
-                  <span className="font-medium pl-1">Lorem</span>
-                </div>
-              </li>
+              <FooterListItem />
+              <FooterListItem />
+              <FooterListItem />
+              <FooterListItem />
             </ul>
           </div>
 
