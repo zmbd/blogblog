@@ -1,3 +1,7 @@
+input:focus {
+  outline: none;
+}
+
 .navigation-li {
   float: left;
   margin: 1em;
