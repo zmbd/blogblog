@@ -1,6 +1,6 @@
 import React from "react";
 
-export function FooterListItem({}) {
+export function FooterListItem() {
   return (
     <li>
       <div className="w-auto h-8 flex items-center justify-center">

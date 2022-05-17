@@ -33,17 +33,17 @@ const Footer = () => {
           <div className="md:w-footer-item-3-md sm:w-full md:h-full sm:h-60 flex flex-col items-start p-2">
             <h3 className="text-white font-semibold text-lg pb-6">Lorem</h3>
             <div className="text-grayish">
-              <div className="flex flex-row items-start justify-start pb-2">
+              <div className="flex flex-row h-6 md:h-12 items-center justify-start pb-2">
                 <BsFillMapFill className="text-3xl text-primary-100" />
                 <span className="pl-3">
                   203 Fake St. Mountain View, San Francisco, California, USA
                 </span>
               </div>
-              <div className="flex flex-row items-start justify-start pb-2">
+              <div className="flex flex-row h-6 md:h-12 items-center justify-start pb-2">
                 <BsFillTelephoneFill className="text-lg text-primary-100" />
                 <span className="pl-3">86 123 456 78</span>
               </div>
-              <div className="flex flex-row items-start justify-start pb-2">
+              <div className="flex flex-row h-6 md:h-12 items-center justify-start pb-2">
                 <BsMessenger className="text-lg text-primary-100" />
                 <span className="pl-3">info@blog.com</span>
               </div>
