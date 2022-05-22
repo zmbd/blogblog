@@ -9,9 +9,13 @@ input:focus {
 }
 
 .navigation-li:hover {
-  color: #090e11;
+  /* color: #090e11; */
   cursor: pointer;
   transition: all ease-in-out 100ms;
+}
+
+.navigation-li.active-li {
+  color: red;
 }
 
 .black-outline {

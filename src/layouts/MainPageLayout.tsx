@@ -4,6 +4,7 @@ import Header from "../components/Header";
 import Newsletter from "../components/Newsletter";
 import Footer from "../components/Footer";
 import { useEffect, useState } from "react";
+import { Outlet } from "react-router-dom";
 
 const MainPageLayout = (props: any) => {
   const [scrolling, setScrolling] = useState<boolean>(false);
@@ -21,7 +22,7 @@ const MainPageLayout = (props: any) => {
   return (
     <div className="w-screen h-screen flex flex-col justify-start items-center cursor-default font-sans">
       <Header scrolling={scrolling} />
-      {props.children}
+      <Outlet />
       <Newsletter />
       <Footer />
     </div>

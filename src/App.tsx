@@ -2,6 +2,9 @@ import React from "react";
 
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import MainPageLayout from "./layouts/MainPageLayout";
+import About from "./pages/About";
+import Articles from "./pages/Articles";
+import Contacts from "./pages/Contacts";
 import Home from "./pages/Home";
 
 function App() {
@@ -9,14 +12,12 @@ function App() {
     <>
       <BrowserRouter>
         <Routes>
-          <Route
-            path="/"
-            element={
-              <MainPageLayout>
-                <Home />
-              </MainPageLayout>
-            }
-          />
+          <Route path="/" element={<MainPageLayout />}>
+            <Route path="" element={<Home />} />
+            <Route path="articles" element={<Articles />} />
+            <Route path="about" element={<About />} />
+            <Route path="contacts" element={<Contacts />} />
+          </Route>
         </Routes>
       </BrowserRouter>
     </>
