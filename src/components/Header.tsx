@@ -1,4 +1,5 @@
 import React from "react";
+import { NavLink } from "react-router-dom";
 import Navigation from "./Navigation";
 
 interface propTypes {
@@ -15,12 +16,14 @@ const Header = (props: propTypes) => {
       }`}
     >
       <div className="lg:w-nav-width-lg flex justify-between items-center h-16">
-        <span
-          className="font-extrabold text-xl hover:cursor-pointer"
-          unselectable="on"
-        >
-          moose
-        </span>
+        <NavLink to={"/"}>
+          <span
+            className="font-extrabold text-xl hover:cursor-pointer"
+            unselectable="on"
+          >
+            moose
+          </span>
+        </NavLink>
         <div className="w-fit mr-9" unselectable="on">
           <Navigation />
         </div>
