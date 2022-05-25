@@ -13,6 +13,9 @@ module.exports = {
         'footer-item-1-md': '45%',
         'footer-item-2-md': '20%',
         'footer-item-3-md': '30%',
+        'article-item-w-md': '29em',
+        'aritcle-item-h-md': '40em',
+        '9/10': '90%',
       },
       colors: {
         'color-active': '#588DA7',
