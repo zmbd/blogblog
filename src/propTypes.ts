@@ -16,3 +16,8 @@ export  interface dynamicStyleType {
   primaryText: string;
   secondaryText: string;
 }
+
+export interface topicHeadingType {
+  topic: string;
+  fontSize?: string;
+}

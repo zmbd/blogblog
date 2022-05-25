@@ -1,24 +1,7 @@
 import React, { useEffect, useLayoutEffect, useState } from "react";
 import useWindowDimensions from "../hooks/useWindowDimensions";
+import { propTypes } from "../propTypes";
 
-interface propTypes {
-  post: postType;
-  order_key: number;
-}
-
-interface postType {
-  name: string;
-  writtenBy: string;
-  writtenOn: string;
-  authorLabel: string;
-  imgUrl: string;
-}
-
-interface dynamicStyleType {
-  bgColor: string;
-  primaryText: string;
-  secondaryText: string;
-}
 
 const CardContainer = (props: propTypes) => {
   const { post, order_key } = props;

@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 
 import { useLayoutEffect, useState } from "react";
 import CardContainer from "../components/CardContainer";
@@ -7,6 +7,8 @@ import posts from "../dummydata";
 import useWindowDimensions from "../hooks/useWindowDimensions";
 
 import "../App.css";
+import { Link } from "react-router-dom";
+import showContentsObserver from "../functions/IntersectionObserver";
 
 const Home = () => {
   const [firstPageMarginBottom, setFirstPageMarginBottom] = useState<number>(0);
@@ -14,22 +16,7 @@ const Home = () => {
   const dimensions = useWindowDimensions();
 
   useLayoutEffect(() => {
-    const showContents = (entries: any) => {
-      entries.forEach((entry: any) => {
-        if (entry.isIntersecting) {
-          entry.target.classList.add("active");
-        }
-      });
-    };
-    const observer = new IntersectionObserver(showContents, {
-      rootMargin: "-10%",
-      threshold: 0.0,
-    });
-
-    const items = document.querySelectorAll(".observer-item");
-    items.forEach((item: any) => {
-      observer.observe(item);
-    });
+    showContentsObserver("observer-item", 0.0, "-10%");
   }, []);
 
   useLayoutEffect(() => {
@@ -106,11 +93,13 @@ const Home = () => {
         })}
       </div>
       <div className="my-10 w-full">
-        <div className="md:h-32 sm:h-24 flex items-center justify-center">
-          <button className="py-5 font-semibold text-primary-200 md:text-2xl sm:text-xl hover:cursor-pointer hover:text-primary-300">
-            View all articles &rarr;
-          </button>
-        </div>
+        <Link to={"/articles"}>
+          <div className="md:h-32 sm:h-24 flex items-center justify-center">
+            <button className="py-5 font-semibold text-primary-200 md:text-2xl sm:text-xl hover:cursor-pointer hover:text-primary-300">
+              View all articles &rarr;
+            </button>
+          </div>
+        </Link>
       </div>
     </>
   );
