@@ -10,7 +10,7 @@ const Pagination = (props: any) => {
   }
 
   return (
-    <div className="md:w-96 h-11 flex flex-row justify-start items-center">
+    <div className="md:w-96 h-11 flex flex-row justify-center items-center">
       {pages.map((page: any, i: number) => {
         return (
           <div
