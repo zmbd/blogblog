@@ -33,7 +33,6 @@ const Articles = () => {
       </div>
       <div className="grid md:grid-cols-3 md:w-9/10 my-32  items-center gap-16 justify-items-center">
         {articles.map((post: any, i: number) => {
-          console.log(post, i);
           return (
             <div
               key={i}
