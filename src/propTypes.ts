@@ -21,3 +21,13 @@ export interface topicHeadingType {
   topic: string;
   fontSize?: string;
 }
+
+export interface featuredArticleType {
+  name: string;
+  writtenBy: string;
+  writtenOn: string;
+  authorLabel: string;
+  imgUrl: string;
+}
+
+export interface featuredArticlesType extends Array<featuredArticleType> {}

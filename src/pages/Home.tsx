@@ -9,6 +9,7 @@ import useWindowDimensions from "../hooks/useWindowDimensions";
 import "../App.css";
 import { Link } from "react-router-dom";
 import showContentsObserver from "../functions/IntersectionObserver";
+import featuredArticles from "../functions/featuredArticles";
 
 const Home = () => {
   const [firstPageMarginBottom, setFirstPageMarginBottom] = useState<number>(0);
@@ -88,7 +89,7 @@ const Home = () => {
       </div>
 
       <div className="w-full h-auto flex flex-col items-center justify-center">
-        {posts.map((post: any, i: number) => {
+        {featuredArticles(posts, 5).map((post: any, i: number) => {
           return <CardContainer key={i} post={post} order_key={i} />;
         })}
       </div>
