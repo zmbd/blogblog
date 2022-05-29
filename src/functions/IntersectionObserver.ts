@@ -1,6 +1,5 @@
 const showContentsObserver = (classname: string, threshold: number, rootMargin: string) => {
   const showContents = (entries: any) => {
-    console.log(entries);
     entries.forEach((entry: any) => {
       if (entry.isIntersecting) {
         entry.target.classList.add("active");

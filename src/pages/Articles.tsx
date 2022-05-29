@@ -1,29 +1,46 @@
-import React, { useLayoutEffect } from "react";
+import React, { useEffect, useLayoutEffect, useState } from "react";
 import { propTypes } from "../propTypes";
 import posts from "../dummydata";
 import TopicHeading from "../components/TopicHeading";
 import showContentsObserver from "../functions/IntersectionObserver";
+import pagination from "../functions/pagination";
+import Pagination from "../components/Pagination";
 
 const Articles = () => {
+  const [page, setPage] = useState<number>(1);
+  const [pageArticles, setPageArticles] = useState(pagination(posts));
+  const [articles, setArticles] = useState(pageArticles[page - 1]);
+
   useLayoutEffect(() => {
     showContentsObserver("observer-item", 0, "20%");
     showContentsObserver("article-data", 0, "15%");
-  }, []);
+
+    scrollTo({ top: 0 });
+  }, [articles]);
+
+  const handlePageChange = (page: number) => {
+    setPage(page);
+  };
+
+  useEffect(() => {
+    setArticles(pageArticles[page - 1]);
+  }, [page, pageArticles]);
 
   return (
     <div className="w-full flex flex-col items-center justify-center my-48">
       <div className="h-auto w-auto text-center">
         <TopicHeading topic="Articles" />
       </div>
-      <div className="grid md:grid-cols-3 my-32 md:w-9/10 items-center justify-items-center gap-y-10">
-        {posts.map((post: any, i: number) => {
+      <div className="grid md:grid-cols-3 md:w-9/10 my-32  items-center gap-16 justify-items-center">
+        {articles.map((post: any, i: number) => {
+          console.log(post, i);
           return (
             <div
               key={i}
-              className="flex flex-col md:w-article-item-w-md md:h-aritcle-item-h-md items-start justify-start"
+              className="flex flex-col hover:cursor-pointer transition duration-300 rounded-sm ease-in-out md:w-article-item-w-md md:h-aritcle-item-h-md items-start justify-start"
             >
               <img
-                className="observer-item opacity-0 object-cover w-full"
+                className="group-hover:opacity-80 observer-item opacity-0 object-cover w-full"
                 style={{ height: "55%" }}
                 src={post.imgUrl}
               />
@@ -48,6 +65,11 @@ const Articles = () => {
           );
         })}
       </div>
+      <Pagination
+        posts={posts.length}
+        currentPage={page}
+        handlePageChange={handlePageChange}
+      />
     </div>
   );
 };
