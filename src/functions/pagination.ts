@@ -10,11 +10,9 @@ export const featuredPages = (articles: number, page: number) => {
       for (let i = 1; i <= 5; i++) selectablePages.push(i);
     }
     else if (page === pages) {
-      console.log('-1');
       for (let i = page - 4; i <= pages; i++) selectablePages.push(i);
     }
     else if (page === pages - 1) {
-      console.log('-2')
       for (let i = page - 3; i <= pages; i++) selectablePages.push(i);
     }
     else for (let i = page - 2; i < page + maxSelectablePages - 2; i++) selectablePages.push(i);

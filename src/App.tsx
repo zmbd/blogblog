@@ -1,6 +1,7 @@
 import React, { useEffect } from "react";
 
 import { BrowserRouter, Routes, Route } from "react-router-dom";
+import NotFound from "./components/NotFound";
 import MainPageLayout from "./layouts/MainPageLayout";
 import About from "./pages/About";
 import Articles from "./pages/Articles";
@@ -17,6 +18,8 @@ function App() {
             <Route path="articles" element={<Articles />} />
             <Route path="about" element={<About />} />
             <Route path="contacts" element={<Contacts />} />
+            <Route path="*" element={<NotFound />} />
+            {/* article */}
           </Route>
         </Routes>
       </BrowserRouter>

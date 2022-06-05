@@ -1,7 +1,7 @@
 import React, { useEffect, useLayoutEffect, useState } from "react";
+import { Link } from "react-router-dom";
 import useWindowDimensions from "../hooks/useWindowDimensions";
 import { propTypes } from "../propTypes";
-
 
 const CardContainer = (props: propTypes) => {
   const { post, order_key } = props;
@@ -25,38 +25,40 @@ const CardContainer = (props: propTypes) => {
   }, []);
 
   return (
-    <div className={`grid gap-0 md:grid-cols-2`}>
-      <div className={`${isEven ? "order-1" : "order-2"}`}>
-        <img
-          className="object-cover"
-          style={{
-            width: `${dimensions.width}px`,
-            height: `${dimensions.height}px`,
-          }}
-          src={post.imgUrl}
-        />
-      </div>
-      <div
-        className={` ${
-          isEven ? "order-2" : "order-1"
-        } flex flex-col justify-center items-start h-full pl-12 ${
-          dynamicStyleParams.bgColor
-        }`}
-      >
-        <div className="observer-item opacity-0 flex flex-col justify-center">
-          <span
-            className={`text-sm font-normal my-2 ${dynamicStyleParams.secondaryText}`}
-          >
-            {post.writtenOn}, ADMIN
-          </span>
-          <span
-            className={`font-extrabold text-5xl ${dynamicStyleParams.primaryText} leading-tight`}
-          >
-            {post.name}
-          </span>
+    <Link to={`/article/${post.name.replaceAll(" ", "-").toLocaleLowerCase()}`}>
+      <div className={`grid gap-0 md:grid-cols-2`}>
+        <div className={`${isEven ? "order-1" : "order-2"}`}>
+          <img
+            className="object-cover"
+            style={{
+              width: `${dimensions.width}px`,
+              height: `${dimensions.height}px`,
+            }}
+            src={post.imgUrl}
+          />
+        </div>
+        <div
+          className={` ${
+            isEven ? "order-2" : "order-1"
+          } flex flex-col justify-center items-start h-full pl-12 ${
+            dynamicStyleParams.bgColor
+          }`}
+        >
+          <div className="observer-item opacity-0 flex flex-col justify-center">
+            <span
+              className={`text-sm font-normal my-2 ${dynamicStyleParams.secondaryText}`}
+            >
+              {post.writtenOn}, ADMIN
+            </span>
+            <span
+              className={`font-extrabold text-5xl ${dynamicStyleParams.primaryText} leading-tight`}
+            >
+              {post.name}
+            </span>
+          </div>
         </div>
       </div>
-    </div>
+    </Link>
   );
 };
 
