@@ -1,13 +1,15 @@
 export const articlesPerPage = 9;
 
 export const featuredPages = (articles: number, page: number) => {
-  const maxSelectablePages = 5;
   const pages = Math.ceil(articles / articlesPerPage);
+  const MAX_VISIBLE_PAGES = 5;
+  const LOOP_END = pages < MAX_VISIBLE_PAGES ? pages : MAX_VISIBLE_PAGES;
+  console.log(pages);
 
     const selectablePages: number[] = [];
       
     if (page <= 2) {
-      for (let i = 1; i <= 5; i++) selectablePages.push(i);
+      for (let i = 1; i <= LOOP_END; i++) selectablePages.push(i);
     }
     else if (page === pages) {
       for (let i = page - 4; i <= pages; i++) selectablePages.push(i);
@@ -15,7 +17,7 @@ export const featuredPages = (articles: number, page: number) => {
     else if (page === pages - 1) {
       for (let i = page - 3; i <= pages; i++) selectablePages.push(i);
     }
-    else for (let i = page - 2; i < page + maxSelectablePages - 2; i++) selectablePages.push(i);
+    else for (let i = page - 2; i < page + LOOP_END - 2; i++) selectablePages.push(i);
   return selectablePages;
 }
 

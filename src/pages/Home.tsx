@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useContext, useEffect } from "react";
 
 import { useLayoutEffect, useState } from "react";
 import CardContainer from "../components/CardContainer";
@@ -11,13 +11,11 @@ import { Link } from "react-router-dom";
 import showContentsObserver from "../functions/IntersectionObserver";
 import featuredArticles from "../functions/featuredArticles";
 import { featuredArticlesType, postType } from "../propTypes";
-import { db } from "../firebase/firebase";
-import { collection, getDocs } from "firebase/firestore";
+import { PostsContext } from "../context/PostsContext";
 
 const Home = () => {
   const [firstPageMarginBottom, setFirstPageMarginBottom] = useState<number>(0);
-  const [posts, setPosts] = useState<featuredArticlesType>();
-  const postsCollectionRef = collection(db, "posts");
+  const { posts, setPosts }: any = useContext(PostsContext);
 
   const dimensions = useWindowDimensions();
 
@@ -25,21 +23,13 @@ const Home = () => {
     showContentsObserver("observer-item", 0.0, "-10%");
   });
 
+  useLayoutEffect(() => scrollTo({ top: 0 }), []);
+
   useLayoutEffect(() => {
     const firstPage = document.getElementById("first-page");
     const bottom = firstPage?.getBoundingClientRect().bottom || 0;
     setFirstPageMarginBottom(window.innerHeight - window.scrollY - bottom);
   }, [dimensions]);
-
-  useEffect(() => {
-    const getUsers = async () => {
-      const data = await getDocs(postsCollectionRef);
-
-      setPosts(data.docs.map((doc: any) => ({ ...doc.data() })));
-    };
-
-    getUsers();
-  }, []);
 
   const handleDownArrowClick = () => {
     window.scrollTo({
