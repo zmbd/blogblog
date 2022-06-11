@@ -3,28 +3,43 @@ import React, { useEffect } from "react";
 import { useLayoutEffect, useState } from "react";
 import CardContainer from "../components/CardContainer";
 import CustomImage from "../components/CustomImage";
-import posts from "../dummydata";
+// import posts from "../dummydata";
 import useWindowDimensions from "../hooks/useWindowDimensions";
 
 import "../App.css";
 import { Link } from "react-router-dom";
 import showContentsObserver from "../functions/IntersectionObserver";
 import featuredArticles from "../functions/featuredArticles";
+import { featuredArticlesType, postType } from "../propTypes";
+import { db } from "../firebase/firebase";
+import { collection, getDocs } from "firebase/firestore";
 
 const Home = () => {
   const [firstPageMarginBottom, setFirstPageMarginBottom] = useState<number>(0);
+  const [posts, setPosts] = useState<featuredArticlesType>();
+  const postsCollectionRef = collection(db, "posts");
 
   const dimensions = useWindowDimensions();
 
   useLayoutEffect(() => {
     showContentsObserver("observer-item", 0.0, "-10%");
-  }, []);
+  });
 
   useLayoutEffect(() => {
     const firstPage = document.getElementById("first-page");
     const bottom = firstPage?.getBoundingClientRect().bottom || 0;
     setFirstPageMarginBottom(window.innerHeight - window.scrollY - bottom);
   }, [dimensions]);
+
+  useEffect(() => {
+    const getUsers = async () => {
+      const data = await getDocs(postsCollectionRef);
+
+      setPosts(data.docs.map((doc: any) => ({ ...doc.data() })));
+    };
+
+    getUsers();
+  }, []);
 
   const handleDownArrowClick = () => {
     window.scrollTo({
@@ -89,9 +104,10 @@ const Home = () => {
       </div>
 
       <div className="w-full h-auto flex flex-col items-center justify-center">
-        {featuredArticles(posts, 5).map((post: any, i: number) => {
-          return <CardContainer key={i} post={post} order_key={i} />;
-        })}
+        {posts &&
+          featuredArticles(posts, 5).map((post: any, i: number) => {
+            return <CardContainer key={i} post={post} order_key={i} />;
+          })}
       </div>
       <div className="my-10 w-full">
         <Link to={"/articles"}>

@@ -1,17 +1,19 @@
 export interface propTypes {
   post: postType;
   order_key: number;
+  contentsLoaded?: boolean;
 }
   
-export  interface postType {
+export interface postType {
   name: string;
   writtenBy: string;
   writtenOn: string;
   authorLabel: string;
+  post: string;
   imgUrl: string;
 }
   
-export  interface dynamicStyleType {
+export interface dynamicStyleType {
   bgColor: string;
   primaryText: string;
   secondaryText: string;
@@ -22,12 +24,4 @@ export interface topicHeadingType {
   fontSize?: string;
 }
 
-export interface featuredArticleType {
-  name: string;
-  writtenBy: string;
-  writtenOn: string;
-  authorLabel: string;
-  imgUrl: string;
-}
-
-export interface featuredArticlesType extends Array<featuredArticleType> {}
+export interface featuredArticlesType extends Array<postType> {}

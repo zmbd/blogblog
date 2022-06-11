@@ -34,7 +34,7 @@ module.exports = {
 
       },
       fontFamily: {
-        'sans': ['Poppins', ...defaultTheme.fontFamily.sans],
+        'sans': ['Poppins'],
       },
       animation: {
         'bounce-slow': 'bounce 2s linear infinite',

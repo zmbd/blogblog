@@ -27,11 +27,9 @@ const Articles = () => {
   }, [page, pageArticles]);
 
   return (
-    <div className="w-full flex flex-col items-center justify-center my-48">
-      <div className="h-auto w-auto text-center">
-        <TopicHeading topic="Articles" />
-      </div>
-      <div className="grid md:grid-cols-3 md:w-9/10 my-32  items-center gap-16 justify-items-center">
+    <div className="w-full flex flex-col items-center justify-center">
+      <TopicHeading topic="Articles" />
+      <div className="grid md:grid-cols-3 md:w-9/10 items-center gap-16 justify-items-center">
         {articles.map((post: any, i: number) => {
           return (
             <div

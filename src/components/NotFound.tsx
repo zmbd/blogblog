@@ -1,6 +1,9 @@
-import React from "react";
+import React, { useLayoutEffect } from "react";
 
 const NotFound = () => {
+  useLayoutEffect(() => {
+    scrollTo({ top: 0 });
+  }, []);
   return (
     <div className="w-full min-h-screen flex flex-col items-center justify-center leading-normal font-bold text-primary-600">
       <span className="text-7xl">Oops...</span>

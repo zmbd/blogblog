@@ -1,10 +1,11 @@
 import React, { useEffect, useLayoutEffect, useState } from "react";
 import { Link } from "react-router-dom";
+import showContentsObserver from "../functions/IntersectionObserver";
 import useWindowDimensions from "../hooks/useWindowDimensions";
 import { propTypes } from "../propTypes";
 
 const CardContainer = (props: propTypes) => {
-  const { post, order_key } = props;
+  const { post, order_key, contentsLoaded } = props;
   const isEven: boolean = order_key % 2 === 0 ? true : false;
 
   const [dynamicStyleParams, setDynamicStyleParams] = useState<any>({
@@ -25,7 +26,10 @@ const CardContainer = (props: propTypes) => {
   }, []);
 
   return (
-    <Link to={`/article/${post.name.replaceAll(" ", "-").toLocaleLowerCase()}`}>
+    <Link
+      to={`/article/${post.name.replaceAll(" ", "-").toLocaleLowerCase()}`}
+      state={{ post: post }}
+    >
       <div className={`grid gap-0 md:grid-cols-2`}>
         <div className={`${isEven ? "order-1" : "order-2"}`}>
           <img
@@ -44,11 +48,15 @@ const CardContainer = (props: propTypes) => {
             dynamicStyleParams.bgColor
           }`}
         >
-          <div className="observer-item opacity-0 flex flex-col justify-center">
+          <div
+            className={`${
+              !contentsLoaded && "observer-item"
+            } flex flex-col justify-center`}
+          >
             <span
               className={`text-sm font-normal my-2 ${dynamicStyleParams.secondaryText}`}
             >
-              {post.writtenOn}, ADMIN
+              ADMIN
             </span>
             <span
               className={`font-extrabold text-5xl ${dynamicStyleParams.primaryText} leading-tight`}

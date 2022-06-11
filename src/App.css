@@ -27,6 +27,7 @@ input:focus {
 
 .observer-item {
   transform: translateY(100%);
+  opacity: 0;
 }
 
 .active {

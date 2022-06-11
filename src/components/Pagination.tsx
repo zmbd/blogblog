@@ -17,7 +17,7 @@ const Pagination = (props: any) => {
   }, [currentPage]);
 
   return (
-    <div className="md:w-96 h-11 flex flex-row justify-center items-center">
+    <div className="md:w-96 h-11 flex flex-row justify-center items-center md:mt-40 mb-10">
       <NavigationButton
         currentPage={currentPage}
         breakpoint={1}

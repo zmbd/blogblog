@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useLayoutEffect } from "react";
 
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import NotFound from "./components/NotFound";
@@ -7,6 +7,7 @@ import About from "./pages/About";
 import Articles from "./pages/Articles";
 import Contacts from "./pages/Contacts";
 import Home from "./pages/Home";
+import SingleArticle from "./pages/SingleArticle";
 
 function App() {
   return (
@@ -19,7 +20,7 @@ function App() {
             <Route path="about" element={<About />} />
             <Route path="contacts" element={<Contacts />} />
             <Route path="*" element={<NotFound />} />
-            {/* article */}
+            <Route path="article/:articleId" element={<SingleArticle />} />
           </Route>
         </Routes>
       </BrowserRouter>
