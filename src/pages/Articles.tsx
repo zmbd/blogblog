@@ -9,6 +9,7 @@ import { PostsContext } from "../context/PostsContext";
 import { collection, getDocs } from "firebase/firestore";
 import { db } from "../firebase/firebase";
 import Spinner from "../components/Spinner";
+import { Link } from "react-router-dom";
 
 const Articles = () => {
   const [page, setPage] = useState<number>(1);
@@ -68,7 +69,11 @@ const Articles = () => {
           <div className="grid md:grid-cols-3 md:w-9/10 items-center gap-16 justify-items-center">
             {articles.map((post: any, i: number) => {
               return (
-                <div
+                <Link
+                  to={`/article/${post.name
+                    .replaceAll(" ", "-")
+                    .toLocaleLowerCase()}`}
+                  state={{ post: post }}
                   key={i}
                   className="flex flex-col hover:cursor-pointer transition duration-300 rounded-sm ease-in-out md:w-article-item-w-md md:h-aritcle-item-h-md items-start justify-start"
                 >
@@ -94,7 +99,7 @@ const Articles = () => {
                       </div>
                     </div>
                   </div>
-                </div>
+                </Link>
               );
             })}
           </div>
