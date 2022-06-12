@@ -10,9 +10,9 @@ import {
 const Footer = () => {
   return (
     <div className="w-full bg-primary-700">
-      <div className="md:h-footer-height-md flex flex-col justify-start items-center py-12">
-        <div className="md:w-footer-container-md lg:w-footer-container-lg md:h-60 flex sm:flex-col md:flex-row items-center justify-between">
-          <div className="md:w-footer-item-1-md sm:w-full md:h-full sm:h-60 flex flex-col items-start p-2">
+      <div className="md:h-fit flex flex-col justify-start items-center py-12">
+        <div className="w-full md:w-9/10 h-fit lg:w-footer-container-lg flex md:flex-row items-center justify-between">
+          <div className="md:w-footer-item-1-md sm:w-full md:h-64 sm:h-60 flex flex-col items-start p-2">
             <h3 className="text-white font-semibold text-lg pb-6">Lorem</h3>
             <p className="text-grayish font-normal text-md">
               Lorem ipsum dolor sit amet consectetur adipisicing elit. Ad
@@ -20,7 +20,7 @@ const Footer = () => {
               consectetur odit.
             </p>
           </div>
-          <div className="md:w-footer-item-2-md sm:w-full md:h-full sm:h-60 flex flex-col items-start p-2">
+          <div className="md:w-footer-item-2-md sm:w-full md:h-64 sm:h-60 flex flex-col items-start p-2">
             <h3 className="text-white font-semibold text-lg pb-6">Lorem</h3>
             <ul className="text-grayish">
               <FooterListItem />
@@ -30,11 +30,11 @@ const Footer = () => {
             </ul>
           </div>
 
-          <div className="md:w-footer-item-3-md sm:w-full md:h-full sm:h-60 flex flex-col items-start p-2">
+          <div className="md:w-footer-item-3-md sm:w-full md:h-64 sm:h-60 flex flex-col items-start p-2">
             <h3 className="text-white font-semibold text-lg pb-6">Lorem</h3>
             <div className="text-grayish">
-              <div className="flex flex-row h-6 md:h-12 items-center justify-start pb-2">
-                <BsFillMapFill className="text-3xl text-primary-100" />
+              <div className="flex flex-row h-6 md:h-12 items-center justify-start pb-2 md:pb-4">
+                <BsFillMapFill className="text-4xl text-primary-100" />
                 <span className="pl-3">
                   203 Fake St. Mountain View, San Francisco, California, USA
                 </span>

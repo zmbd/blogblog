@@ -5,7 +5,7 @@ const TopicHeading = (props: topicHeadingType) => {
   const { topic, fontSize } = props;
   return (
     <span
-      className={`${fontSize} text-primary-600 leading-tight font-medium m-60`}
+      className={`${fontSize} text-primary-600 leading-tight font-medium md:m-40 m-60`}
     >
       {topic}
     </span>

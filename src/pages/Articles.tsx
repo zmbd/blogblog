@@ -66,7 +66,7 @@ const Articles = () => {
       ) : (
         <>
           <TopicHeading topic="Articles" />
-          <div className="grid md:grid-cols-3 md:w-9/10 items-center gap-16 justify-items-center">
+          <div className="grid md:grid-cols-2 grid-cols-1 md:w-9/10 items-center md:gap-x-14 gap-y-40 justify-items-center">
             {articles.map((post: any, i: number) => {
               return (
                 <Link
@@ -78,24 +78,27 @@ const Articles = () => {
                   className="flex flex-col hover:cursor-pointer transition duration-300 rounded-sm ease-in-out md:w-article-item-w-md md:h-aritcle-item-h-md items-start justify-start"
                 >
                   <img
-                    className="group-hover:opacity-80 observer-item opacity-0 object-cover w-full"
-                    style={{ height: "55%" }}
+                    className="group-hover:opacity-80 observer-item pb-3 opacity-0 object-cover w-full md:h-80"
                     src={post.imgUrl}
                   />
-                  <div className="article-data translate-y-full opacity-0 h-full w-full flex flex-col">
-                    <span className="text-sm font-medium py-8 text-primary-100">
+                  <div className="article-data translate-y-full opacity-0 h-full w-full">
+                    <span className="text-xs font-medium text-primary-100">
                       NaN, ADMIN
                     </span>
-                    <span className="font-semibold text-3xl leading-tight pb-5 text-primary-600">
-                      {post.name}
-                    </span>
-                    <div className="flex flex-row justify-start items-center w-full h-full py-3">
-                      <div className="rounded-full bg-black md:w-20 md:h-20" />
-                      <div className="flex flex-col items-start justify-start pl-3">
-                        <span className="font-bold">{post.writtenBy}</span>
-                        <span className="text-xs font-medium text-primary-100">
-                          {post.authorLabel}
+                    <div className="flex flex-col items-start w-full h-full">
+                      <div className="w-full h-32 flex justify-start items-center">
+                        <span className="font-semibold md:text-2xl items-center lg:text-2xl xl:text-3xl leading-tight text-primary-600">
+                          {post.name}
                         </span>
+                      </div>
+                      <div className="flex flex-row justify-start w-full h-fit">
+                        <div className="rounded-full bg-black md:w-16 md:h-16" />
+                        <div className="flex flex-col items-start justify-start pl-3">
+                          <span className="font-bold">{post.writtenBy}</span>
+                          <span className="text-xs font-medium text-primary-100">
+                            {post.authorLabel}
+                          </span>
+                        </div>
                       </div>
                     </div>
                   </div>
