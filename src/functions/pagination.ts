@@ -4,7 +4,6 @@ export const featuredPages = (articles: number, page: number) => {
   const pages = Math.ceil(articles / articlesPerPage);
   const MAX_VISIBLE_PAGES = 5;
   const LOOP_END = pages < MAX_VISIBLE_PAGES ? pages : MAX_VISIBLE_PAGES;
-  console.log(pages);
 
     const selectablePages: number[] = [];
       

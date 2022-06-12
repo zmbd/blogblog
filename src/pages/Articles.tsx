@@ -8,6 +8,7 @@ import Pagination from "../components/Pagination";
 import { PostsContext } from "../context/PostsContext";
 import { collection, getDocs } from "firebase/firestore";
 import { db } from "../firebase/firebase";
+import Spinner from "../components/Spinner";
 
 const Articles = () => {
   const [page, setPage] = useState<number>(1);
@@ -57,11 +58,13 @@ const Articles = () => {
 
   return (
     <div className="w-full flex flex-col items-center justify-center">
-      <TopicHeading topic="Articles" />
       {loading ? (
-        <div>LOXAI</div>
+        <div className="h-screen flex justify-center items-center">
+          <Spinner />
+        </div>
       ) : (
         <>
+          <TopicHeading topic="Articles" />
           <div className="grid md:grid-cols-3 md:w-9/10 items-center gap-16 justify-items-center">
             {articles.map((post: any, i: number) => {
               return (

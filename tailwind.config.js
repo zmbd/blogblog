@@ -17,6 +17,9 @@ module.exports = {
         'aritcle-item-h-md': '40em',
         '9/10': '90%',
       },
+      borderRadius: {
+        'half': '50%',
+      },
       colors: {
         'color-active': '#588DA7',
         'primary-100': '#4f7f96',
