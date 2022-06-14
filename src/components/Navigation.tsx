@@ -1,10 +1,18 @@
 import React from "react";
 import { NavLink } from "react-router-dom";
+import NavLi from "./NavLi";
 
-const Navigation = () => {
+const Navigation = (props?: any) => {
+  const { isSmall } = props;
   return (
-    <ul className="font-medium">
-      <li className="navigation-li">
+    <ul
+      className={`font-medium ${
+        isSmall
+          ? "flex flex-col justify-start items-start"
+          : "flex flex-row justify-between items-center"
+      }`}
+    >
+      <NavLi isSmall>
         <NavLink
           to={"/"}
           className={({ isActive }) =>
@@ -13,8 +21,8 @@ const Navigation = () => {
         >
           Home
         </NavLink>
-      </li>
-      <li className="navigation-li">
+      </NavLi>
+      <NavLi isSmall>
         <NavLink
           to={"/articles"}
           className={({ isActive }) =>
@@ -23,8 +31,8 @@ const Navigation = () => {
         >
           Articles
         </NavLink>
-      </li>
-      <li className="navigation-li">
+      </NavLi>
+      <NavLi isSmall>
         <NavLink
           to={"/about"}
           className={({ isActive }) =>
@@ -33,8 +41,8 @@ const Navigation = () => {
         >
           About
         </NavLink>
-      </li>
-      <li className="navigation-li">
+      </NavLi>
+      <NavLi isSmall>
         <NavLink
           to={"/contacts"}
           className={({ isActive }) =>
@@ -43,7 +51,7 @@ const Navigation = () => {
         >
           Contacts
         </NavLink>
-      </li>
+      </NavLi>
     </ul>
   );
 };

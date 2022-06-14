@@ -6,6 +6,7 @@ input:focus {
   float: left;
   margin: 1em;
   user-select: none;
+  width: 400px;
 }
 
 .navigation-li:hover {
