@@ -1,6 +1,7 @@
-import React, { useLayoutEffect, useState } from "react";
+import React, { useContext, useLayoutEffect, useState } from "react";
 import { NavLink } from "react-router-dom";
 import { NavigationContext } from "../context/NavigationContext";
+import { ScreenContext } from "../context/screenContext";
 import useWindowDimensions from "../hooks/useWindowDimensions";
 import Navigation from "./Navigation";
 
@@ -9,9 +10,8 @@ interface propTypes {
 }
 
 const Header = (props: propTypes) => {
-  const [isSmallScreen, setSmallScreen] = useState<boolean>(false);
+  const { isSmallScreen }: any = useContext(ScreenContext);
   const [isMenuOpened, setMenu] = useState<boolean>(false);
-  const dimensions = useWindowDimensions();
 
   const scrolledStyles = "drop-shadow-lg h-12";
   const noscrollStyles = "drop-shadow-none h-16";
@@ -25,11 +25,6 @@ const Header = (props: propTypes) => {
       header?.classList.add("h-44");
     }
   };
-
-  useLayoutEffect(() => {
-    if (dimensions.width < 1024) setSmallScreen(true);
-    else setSmallScreen(false);
-  }, [dimensions]);
 
   return (
     <NavigationContext.Provider value={{ isMenuOpened, setMenu }}>

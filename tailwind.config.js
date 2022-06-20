@@ -1,3 +1,4 @@
+const { calc } = require('@chakra-ui/react')
 const defaultTheme = require('tailwindcss/defaultTheme')
 
 module.exports = {
@@ -27,6 +28,7 @@ module.exports = {
         'gird-box-3xl': '1536px',
         '600px': '600px',
         '720px': '720px',
+        'container-h-head': calc('100% - 64px'),
         '9/10': '90%',
       },
       screens: {

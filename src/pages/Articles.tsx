@@ -83,20 +83,22 @@ const Articles = () => {
                     src={post.imgUrl}
                   />
                   <div className="article-data translate-y-full opacity-0 h-full w-full">
-                    <span className="text-xs font-medium text-primary-100">
+                    <span className="font-medium text-sm xl:text-base text-primary-100">
                       NaN, ADMIN
                     </span>
                     <div className="flex flex-col items-start w-full h-full">
                       <div className="w-full h-32 flex justify-start items-center">
-                        <span className="font-semibold text-xl md:text-2xl items-center lg:text-2xl xl:text-3xl leading-tight text-primary-600">
+                        <span className="font-semibold text-2xl items-center lg:text-2xl xl:text-3xl leading-tight text-primary-600">
                           {post.name}
                         </span>
                       </div>
                       <div className="flex flex-row justify-start w-full h-fit">
-                        <div className="rounded-full bg-black w-16 h-16" />
+                        <div className="rounded-full bg-black w-20 h-20" />
                         <div className="flex flex-col items-start justify-start pl-3">
-                          <span className="font-bold">{post.writtenBy}</span>
-                          <span className="text-xs font-medium text-primary-100">
+                          <span className="font-bold text-lg">
+                            {post.writtenBy}
+                          </span>
+                          <span className=" text-base font-medium text-primary-100">
                             {post.authorLabel}
                           </span>
                         </div>

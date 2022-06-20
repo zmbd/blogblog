@@ -7,20 +7,22 @@ import {
   BsMessenger,
 } from "react-icons/bs";
 
+import { FaMapMarker } from "react-icons/fa";
+
 const Footer = () => {
   return (
     <div className="w-full bg-primary-700">
       <div className="md:h-fit flex flex-col justify-start items-center py-12">
-        <div className="w-full md:w-9/10 h-fit lg:w-footer-container-lg flex md:flex-row items-center justify-between">
-          <div className="md:w-footer-item-1-md sm:w-full md:h-64 sm:h-60 flex flex-col items-start p-2">
+        <div className="w-full md:w-9/10 h-fit lg:w-footer-container-lg flex md:flex-row flex-col items-center justify-between">
+          <div className="md:w-footer-item-1-md w-full md:h-64 h-60 flex flex-col items-start p-2">
             <h3 className="text-white font-semibold text-lg pb-6">Lorem</h3>
-            <p className="text-grayish font-normal text-md">
+            <p className="text-grayish p-3 font-normal text-lg">
               Lorem ipsum dolor sit amet consectetur adipisicing elit. Ad
               quaerat harum reiciendis ab deserunt rem quisquam impedit quam,
               consectetur odit.
             </p>
           </div>
-          <div className="md:w-footer-item-2-md sm:w-full md:h-64 sm:h-60 flex flex-col items-start p-2">
+          <div className="md:w-footer-item-2-md w-full md:h-64 h-60 flex flex-col items-start p-2">
             <h3 className="text-white font-semibold text-lg pb-6">Lorem</h3>
             <ul className="text-grayish">
               <FooterListItem />
@@ -30,20 +32,20 @@ const Footer = () => {
             </ul>
           </div>
 
-          <div className="md:w-footer-item-3-md sm:w-full md:h-64 sm:h-60 flex flex-col items-start p-2">
+          <div className="md:w-footer-item-3-md w-full md:h-64 h-60 flex flex-col items-start p-2">
             <h3 className="text-white font-semibold text-lg pb-6">Lorem</h3>
             <div className="text-grayish">
-              <div className="flex flex-row h-6 md:h-12 items-center justify-start pb-2 md:pb-4">
-                <BsFillMapFill className="text-4xl text-primary-100" />
+              <div className="flex flex-row h-14 items-center justify-start p-3">
+                <FaMapMarker className="text-2xl text-primary-100" />
                 <span className="pl-3">
                   203 Fake St. Mountain View, San Francisco, California, USA
                 </span>
               </div>
-              <div className="flex flex-row h-6 md:h-12 items-center justify-start pb-2">
+              <div className="flex flex-row h-8 md:h-12 items-center justify-start p-3">
                 <BsFillTelephoneFill className="text-lg text-primary-100" />
                 <span className="pl-3">86 123 456 78</span>
               </div>
-              <div className="flex flex-row h-6 md:h-12 items-center justify-start pb-2">
+              <div className="flex flex-row h-8 md:h-12 items-center justify-start p-3">
                 <BsMessenger className="text-lg text-primary-100" />
                 <span className="pl-3">info@blog.com</span>
               </div>
