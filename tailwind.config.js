@@ -15,7 +15,7 @@ module.exports = {
         'footer-item-2-md': '16%',
         'footer-item-3-md': '36%',
         'article-item-w-md': '20em',
-        'article-item-w-lg': '22em',
+        'article-item-w-lg': '24em',
         'article-item-w-xl': '24em',
         'article-item-w-2xl': '26em',
         'article-item-w-3xl': '28em',
@@ -28,8 +28,7 @@ module.exports = {
         'gird-box-3xl': '1536px',
         '600px': '600px',
         '720px': '720px',
-        'container-h-head': calc('100% - 64px'),
-        '9/10': '90%',
+        '9/10': '94%',
       },
       screens: {
         '3xl': '1920px', 

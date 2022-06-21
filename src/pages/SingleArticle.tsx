@@ -13,7 +13,12 @@ const SingleArticle = () => {
   return (
     <div className="w-full h-auto flex flex-col justify-start items-center">
       <TopicHeading topic="Single Article" />
-      <CardContainer post={post} order_key={2} contentsLoaded={true} />
+      <CardContainer
+        post={post}
+        order_key={2}
+        contentsLoaded={true}
+        specialLayout={true}
+      />
       <Post post={post.post} />
     </div>
   );

@@ -2,6 +2,8 @@ export interface propTypes {
   post: postType;
   order_key: number;
   contentsLoaded?: boolean;
+  forKey?: number;
+  specialLayout?: boolean;
 }
   
 export interface postType {

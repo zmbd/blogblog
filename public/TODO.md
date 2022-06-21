@@ -2,6 +2,8 @@
 
 # next-task
 
-## refactor Footer, divide to multiple components
+## breakpoint to grid-col-2 on md screens or higher instead of lg
 
-## routing, new pages, move contents from App.ts to Home page
+## lodash throttle for the useWindowDimensions
+
+## finish about and contact pages (Super not important)

@@ -29,13 +29,13 @@ const Home = () => {
     const firstPage = document.getElementById("first-page");
     const bottom = firstPage?.getBoundingClientRect().bottom || 0;
     const marginBottom = window.innerHeight - window.scrollY - bottom;
-    console.log(firstPage?.getBoundingClientRect());
     setFirstPageMarginBottom(marginBottom > 0 ? marginBottom : -marginBottom);
   }, [dimensions]);
 
   const handleDownArrowClick = () => {
     document.getElementById("card-container")?.scrollIntoView({
       behavior: "smooth",
+      block: "start",
     });
   };
 
@@ -105,7 +105,14 @@ const Home = () => {
       >
         {posts &&
           featuredArticles(posts, 5).map((post: any, i: number) => {
-            return <CardContainer key={i} post={post} order_key={i} />;
+            return (
+              <CardContainer
+                key={i}
+                post={post}
+                order_key={i}
+                specialLayout={true}
+              />
+            );
           })}
       </div>
       <div className="my-10 w-full">
