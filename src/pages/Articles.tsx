@@ -23,9 +23,7 @@ const Articles = () => {
   const postsCollectionRef = collection(db, "posts");
 
   useLayoutEffect(() => {
-    showContentsObserver("observer-item", 0, "20%");
-    showContentsObserver("article-data", 0, "15%");
-
+    showContentsObserver("article-data", 0.15, "0%", "active");
     scrollTo({ top: 0 });
   }, [articles]);
 
@@ -77,43 +75,6 @@ const Articles = () => {
                   forKey={i}
                   order_key={i}
                 />
-                // <Link
-                //   to={`/article/${post.name
-                //     .replaceAll(" ", "-")
-                //     .toLocaleLowerCase()}`}
-                //   state={{ post: post }}
-                //   key={i}
-                //   className="flex flex-col hover:cursor-pointer transition duration-300 rounded-sm ease-in-out w-full md:w-article-item-w-md xl:w-article-item-w-2xl lg:w-article-item-w-lg 3xl:w-article-item-w-3xl sm:h-fit items-start justify-start"
-                // >
-                // <img
-                //   className="group-hover:opacity-80 observer-item pb-3 opacity-0 object-cover w-full h-96 xl:h-96"
-                //   style={{ width: "100%" }}
-                //   src={post.imgUrl}
-                // />
-                // <div className="article-data translate-y-full opacity-0 h-full w-full">
-                //   <span className="font-medium text-sm xl:text-base text-primary-100">
-                //     NaN, ADMIN
-                //   </span>
-                //   <div className="flex flex-col items-start w-full h-full">
-                //     <div className="w-full h-32 flex justify-start items-center">
-                //       <span className="font-semibold text-2xl items-center lg:text-2xl xl:text-3xl leading-tight text-primary-600">
-                //         {post.name}
-                //       </span>
-                //     </div>
-                //     <div className="flex flex-row justify-start w-full h-fit">
-                //       <div className="rounded-full bg-black w-20 h-20" />
-                //       <div className="flex flex-col items-start justify-start pl-3">
-                //         <span className="font-bold text-lg">
-                //           {post.writtenBy}
-                //         </span>
-                //         <span className=" text-base font-medium text-primary-100">
-                //           {post.authorLabel}
-                //         </span>
-                //       </div>
-                //     </div>
-                //   </div>
-                // </div>
-                // </Link>
               );
             })}
           </div>

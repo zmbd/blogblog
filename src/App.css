@@ -36,3 +36,9 @@ input:focus {
   transform: translateY(0%);
   opacity: 1;
 }
+
+.fade-up {
+  transition: all 0.8s ease-out;
+  transform: translateY(0%);
+  opacity: 1;
+}

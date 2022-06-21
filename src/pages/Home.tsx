@@ -20,8 +20,8 @@ const Home = () => {
   const dimensions = useWindowDimensions();
 
   useLayoutEffect(() => {
-    showContentsObserver("observer-item", 0.0, "26%");
-  });
+    showContentsObserver("observer-item", 0.0, "26%", "active");
+  }, [posts]);
 
   useLayoutEffect(() => scrollTo({ top: 0 }), []);
 

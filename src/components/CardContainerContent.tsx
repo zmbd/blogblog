@@ -1,9 +1,15 @@
-import React, { useContext, useEffect, useState } from "react";
+import React, { useContext, useEffect, useLayoutEffect, useState } from "react";
 import { ScreenContext } from "../context/screenContext";
 
 const CardContainerContent = (props: any) => {
-  const { post, order_key, contentsLoaded, dimensions, specialLayout } = props;
-  const { isSmallScreen }: any = useContext(ScreenContext);
+  const {
+    post,
+    order_key,
+    contentsLoaded,
+    dimensions,
+    specialLayout,
+    isLowerMediumBreak,
+  } = props;
   const [dynamicStyleParams, setDynamicStyleParams] = useState<any>({
     bgColor: "bg-primary-500",
     primaryText: "text-white",
@@ -26,7 +32,7 @@ const CardContainerContent = (props: any) => {
     <>
       <div
         className={`${
-          !isSmallScreen && specialLayout
+          !isLowerMediumBreak && specialLayout
             ? isEven
               ? "order-1"
               : "order-2"
@@ -34,11 +40,11 @@ const CardContainerContent = (props: any) => {
         } w-full`}
       >
         <img
-          className={`object-cover w-full ${!specialLayout && "observer-item"}`}
+          className={`object-cover w-full`}
           style={{
             height: `${
               specialLayout
-                ? isSmallScreen
+                ? isLowerMediumBreak
                   ? (dimensions.height / 2) * 0.9 + "px"
                   : dimensions.height - 64 + "px"
                 : (dimensions.height / 2.2) * 0.9 + "px"
@@ -53,14 +59,14 @@ const CardContainerContent = (props: any) => {
           specialLayout
             ? `flex flex-col justify-start w-full h-full lg:justify-center lg:items-center items-start lg:h-full pl-2 lg:pl-12 ${
                 dynamicStyleParams.bgColor
-              } ${!isSmallScreen && isEven ? "order-2" : "order-1"}`
-            : "article-data translate-y-full opacity-0 w-full"
+              } ${!isLowerMediumBreak && isEven ? "order-2" : "order-1"}`
+            : "article-data translate-y-32 opacity-0 w-full"
         } `}
         style={{
           width: `100%`,
           height: `${
             specialLayout
-              ? isSmallScreen
+              ? isLowerMediumBreak
                 ? (dimensions.height / 2.2) * 0.9 + "px"
                 : dimensions.height - 64 + "px"
               : (dimensions.height / 2.2) * 0.8 + "px"
@@ -75,7 +81,7 @@ const CardContainerContent = (props: any) => {
           <div
             className={`flex flex-col ${
               specialLayout
-                ? isSmallScreen
+                ? isLowerMediumBreak
                   ? "justify-between"
                   : "justify-center"
                 : "justify-between"

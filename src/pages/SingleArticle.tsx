@@ -6,9 +6,17 @@ import TopicHeading from "../components/TopicHeading";
 
 const SingleArticle = () => {
   const location = useLocation();
-  const { post }: any = location.state; //fix type && display single post if entered via URL directly.
+  const { post }: any = location.state !== null && location.state; //fix type && display single post if entered via URL directly.
 
   useLayoutEffect(() => scrollTo({ top: 0 }), []);
+
+  useEffect(() => {
+    console.log("HELLO HELLO HELLO");
+
+    // if (post === undefined) {
+
+    // }
+  }, []);
 
   return (
     <div className="w-full h-auto flex flex-col justify-start items-center">

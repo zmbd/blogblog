@@ -1,4 +1,6 @@
+
 import React, { useLayoutEffect, useState } from 'react'
+import {throttle} from "lodash";
 
 interface DimensionsType {
   width: number;
@@ -12,12 +14,16 @@ const useWindowDimensions = () => {
   });
 
   useLayoutEffect(() => {
-    const updateDimensions = () => {
+    let updateDimensions = () => {
       setDimensions({ width: window.innerWidth, height: window.innerHeight });
     };
+    
+    updateDimensions = throttle(updateDimensions, 350);
     window.addEventListener("resize", updateDimensions);
     updateDimensions();
-    return () => window.removeEventListener("resize", updateDimensions);
+    return () => {
+      window.removeEventListener("resize", updateDimensions);
+    }
   }, []);
 
   return dimensions;

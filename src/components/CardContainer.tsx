@@ -1,6 +1,9 @@
 import React, { useContext, useEffect } from "react";
 import { Link } from "react-router-dom";
-import { ScreenContext } from "../context/screenContext";
+import {
+  MediumBreakpointContext,
+  ScreenContext,
+} from "../context/screenContext";
 import useWindowDimensions from "../hooks/useWindowDimensions";
 import { propTypes } from "../propTypes";
 import CardContainerContent from "./CardContainerContent";
@@ -8,7 +11,7 @@ import CardContainerContent from "./CardContainerContent";
 const CardContainer = (props: propTypes) => {
   const { post, order_key, contentsLoaded, forKey, specialLayout } = props;
 
-  const { isSmallScreen }: any = useContext(ScreenContext);
+  const { isLowerMediumBreak }: any = useContext(MediumBreakpointContext);
 
   const dimensions = useWindowDimensions();
 
@@ -19,7 +22,7 @@ const CardContainer = (props: propTypes) => {
           to={`/article/${post.name.replaceAll(" ", "-").toLocaleLowerCase()}`}
           state={{ post: post }}
           className={`${
-            isSmallScreen && specialLayout
+            isLowerMediumBreak
               ? "flex flex-col mb-16"
               : "grid gap-0 grid-rows-2 md:grid-rows-1 md:grid-cols-2 xl:gap-0"
           } w-9/10`}
@@ -30,6 +33,7 @@ const CardContainer = (props: propTypes) => {
             contentsLoaded={contentsLoaded}
             dimensions={dimensions}
             specialLayout={specialLayout}
+            isLowerMediumBreak={isLowerMediumBreak}
           />
         </Link>
       ) : (
