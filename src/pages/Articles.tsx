@@ -32,8 +32,9 @@ const Articles = () => {
   };
 
   useEffect(() => {
+    let timeout: any;
     if (!posts) {
-      setTimeout(() => {
+      timeout = setTimeout(() => {
         const getUsers = async () => {
           const data = await getDocs(postsCollectionRef);
           const i: any[] = [];
@@ -46,6 +47,8 @@ const Articles = () => {
         setLoading(false);
       }, 750);
     } else setLoading(false);
+
+    return () => clearTimeout(timeout);
   }, []);
 
   useEffect(() => {
@@ -59,7 +62,7 @@ const Articles = () => {
   return (
     <div className="w-full flex flex-col items-center justify-center">
       {loading ? (
-        <div className="h-screen flex justify-center items-center">
+        <div className="h-full flex justify-center items-center">
           <Spinner />
         </div>
       ) : (
