@@ -4,13 +4,13 @@
 
 ## single article responsive styling
 
-## full access via url
-
 ## header bug when redirected to other page
 
 ## finish about and contact pages (Super not important)
 
 ## newsletter form validation
+
+## full access via url -> SOLVED
 
 ## debounce for the useWindowDimensions -> SOLVED
 

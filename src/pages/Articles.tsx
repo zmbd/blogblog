@@ -1,4 +1,10 @@
-import React, { useContext, useEffect, useLayoutEffect, useState } from "react";
+import React, {
+  useContext,
+  useEffect,
+  useLayoutEffect,
+  useMemo,
+  useState,
+} from "react";
 import { propTypes } from "../propTypes";
 
 import TopicHeading from "../components/TopicHeading";
@@ -9,17 +15,17 @@ import { PostsContext } from "../context/PostsContext";
 import { collection, getDocs } from "firebase/firestore";
 import { db } from "../firebase/firebase";
 import Spinner from "../components/Spinner";
-import { Link } from "react-router-dom";
 import CardContainer from "../components/CardContainer";
+import { useOutletContext } from "react-router-dom";
 
 const Articles = () => {
   const [page, setPage] = useState<number>(1);
-  const [loading, setLoading] = useState<boolean>(true);
+  const { loading, setLoading }: any = useOutletContext();
   const { posts, setPosts }: any = useContext(PostsContext);
   const [pageArticles, setPageArticles] = useState<any>(
     posts && pagination(posts)
   );
-  const [articles, setArticles] = useState<any>(0);
+  const [articles, setArticles] = useState<any>();
   const postsCollectionRef = collection(db, "posts");
 
   useLayoutEffect(() => {
@@ -35,7 +41,7 @@ const Articles = () => {
     let timeout: any;
     if (!posts) {
       timeout = setTimeout(() => {
-        const getUsers = async () => {
+        const getPosts = async () => {
           const data = await getDocs(postsCollectionRef);
           const i: any[] = [];
           data.docs.map((doc: any) => i.push(doc.data()));
@@ -43,10 +49,10 @@ const Articles = () => {
           setPageArticles(pagination(i));
         };
 
-        getUsers();
+        getPosts();
         setLoading(false);
       }, 750);
-    } else setLoading(false);
+    } else loading && setLoading(false);
 
     return () => clearTimeout(timeout);
   }, []);
@@ -62,24 +68,25 @@ const Articles = () => {
   return (
     <div className="w-full flex flex-col items-center justify-center">
       {loading ? (
-        <div className="h-full flex justify-center items-center">
+        <div className="h-screen flex justify-center items-center">
           <Spinner />
         </div>
       ) : (
         <>
           <TopicHeading topic="Articles" />
           <div className="grid md:grid-cols-2 2xl:grid-cols-3 grid-cols-1 w-9/10 md:w-grid-box-md lg:w-grid-box-lg xl:w-grid-box-xl  2xl:w-grid-box-2xl 3xl:w-gird-box-3xl items-center gap-x-14 gap-y-40 justify-items-center mb-32">
-            {articles.map((post: any, i: number) => {
-              return (
-                <CardContainer
-                  post={post}
-                  specialLayout={false}
-                  key={i}
-                  forKey={i}
-                  order_key={i}
-                />
-              );
-            })}
+            {articles &&
+              articles.map((post: any, i: number) => {
+                return (
+                  <CardContainer
+                    post={post}
+                    specialLayout={false}
+                    key={i}
+                    forKey={i}
+                    order_key={i}
+                  />
+                );
+              })}
           </div>
           <Pagination
             posts={posts.length}

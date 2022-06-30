@@ -1,4 +1,4 @@
-import React, { useContext, useEffect, useRef } from "react";
+import React, { useContext, useEffect, useMemo, useRef } from "react";
 
 import { useLayoutEffect, useState } from "react";
 import CardContainer from "../components/CardContainer";
@@ -6,7 +6,7 @@ import CustomImage from "../components/CustomImage";
 import useWindowDimensions from "../hooks/useWindowDimensions";
 
 import "../App.css";
-import { Link } from "react-router-dom";
+import { Link, useOutletContext } from "react-router-dom";
 import showContentsObserver from "../functions/IntersectionObserver";
 import featuredArticles from "../functions/featuredArticles";
 import { PostsContext } from "../context/PostsContext";
@@ -19,7 +19,7 @@ const Home = () => {
   const { isSmallScreen }: any = useContext(ScreenContext);
   const { posts, setPosts }: any = useContext(PostsContext);
   const { aboutData }: any = useContext(AboutContext);
-  const [loading, setLoading] = useState<boolean>(true);
+  const { loading, setLoading }: any = useOutletContext();
 
   const dimensions = useWindowDimensions();
 
@@ -41,6 +41,7 @@ const Home = () => {
       const timeout = setTimeout(() => {
         setLoading(false);
       }, 500);
+
       return () => clearTimeout(timeout);
     }
   }, [posts, aboutData]);
@@ -54,7 +55,7 @@ const Home = () => {
 
   return (
     <div className="w-full h-auto flex flex-col justify-center items-center">
-      {loading || loading === undefined ? (
+      {loading ? (
         <div className="h-screen flex justify-center items-center">
           <Spinner />
         </div>

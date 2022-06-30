@@ -10,11 +10,38 @@ import {
   ScreenContext,
 } from "../context/screenContext";
 import useWindowDimensions from "../hooks/useWindowDimensions";
+import { collection, getDocs } from "firebase/firestore";
+import { db } from "../firebase/firebase";
+import { AboutContext } from "../context/AboutContext";
+import { PostsContext } from "../context/PostsContext";
 
 const MainPageLayout = (props: any) => {
   const [scrolling, setScrolling] = useState<boolean>(false);
   const [isSmallScreen, setSmallScreen] = useState<boolean>(false);
   const [isLowerMediumBreak, setLowerMediumBreak] = useState<boolean>(false);
+  const [posts, setPosts] = useState<any>();
+  const [aboutData, setAboutdata] = useState<any>();
+  const [loading, setLoading] = useState(true);
+
+  const postsCollectionRef = collection(db, "posts");
+  const aboutCollectionRef = collection(db, "about");
+
+  useEffect(() => {
+    const getPosts = async () => {
+      const data = await getDocs(postsCollectionRef);
+
+      setPosts(data.docs.map((doc: any) => ({ ...doc.data() })));
+    };
+
+    const getAboutData = async () => {
+      const data = await getDocs(aboutCollectionRef);
+
+      setAboutdata(data.docs.map((doc: any) => ({ ...doc.data() })));
+    };
+
+    getPosts();
+    getAboutData();
+  }, []);
 
   const dimensions = useWindowDimensions();
 
@@ -41,7 +68,11 @@ const MainPageLayout = (props: any) => {
       <MediumBreakpointContext.Provider value={{ isLowerMediumBreak }}>
         <div className="w-screen h-screen flex flex-col justify-start items-center cursor-default font-sans">
           <Header scrolling={scrolling} />
-          <Outlet />
+          <PostsContext.Provider value={{ posts, setPosts }}>
+            <AboutContext.Provider value={{ aboutData }}>
+              <Outlet context={{ loading, setLoading }} />
+            </AboutContext.Provider>
+          </PostsContext.Provider>
           <Newsletter />
           <Footer />
         </div>
