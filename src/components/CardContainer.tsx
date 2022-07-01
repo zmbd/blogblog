@@ -24,7 +24,7 @@ const CardContainer = (props: propTypes) => {
           className={`${
             isLowerMediumBreak
               ? "flex flex-col mb-16"
-              : "grid gap-0 grid-rows-2 md:grid-rows-1 md:grid-cols-2 xl:gap-0"
+              : "grid gap-0 grid-rows-2 sm:grid-rows-1 sm:grid-cols-2 xl:gap-0"
           } w-9/10`}
         >
           <CardContainerContent

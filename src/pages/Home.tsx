@@ -82,23 +82,18 @@ const Home = () => {
                 </span>
               </header>
               <div className="pt-7">
-                <span className="text-lg">
-                  A small river named Duden flows by their place and supplies it
-                  with the necessary regelialia. It is a paradisematic country,
-                  in which roasted parts of sentences fly into your mouth.
-                </span>
+                <span className="text-lg">{aboutData[0].blogIntro}</span>
               </div>
             </div>
             <div className="rightside w-full xl:w-2/5 xl:pl-7 pt-7 xl:pt-0 flex flex-col justify-start">
               <CustomImage
                 roundValue="rounded-full"
-                imgUrl="https://images.unsplash.com/photo-1500648767791-00dcc994a43e?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=3000&q=80"
+                imgUrl={aboutData[0].aboutAuthorImg}
               />
-              <span className="font-bold text-xl py-3">Giller Moose</span>
-              <span className="text-md">
-                A small river named Duden flows by their place and supplies it
-                with the necessary regelialia.
+              <span className="font-bold text-xl py-3">
+                {aboutData[0].blogAuthor}
               </span>
+              <span className="text-md">{aboutData[0].aboutAuthorSm}</span>
             </div>
           </section>
           <div

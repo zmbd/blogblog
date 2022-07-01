@@ -87,12 +87,12 @@ const CardContainerContent = (props: any) => {
                 : "justify-between"
             } w-full h-full`}
           >
-            <div className="w-full h-fit flex flex-col justify-start items-start">
-              <span className="font-medium text-sm xl:text-base pt-5 text-primary-100">
+            <div className="w-full h-fit flex p-2 flex-col justify-start items-start">
+              <span className="font-medium text-xs sm:text-sm xl:text-base pt-5 text-primary-100">
                 NaN, ADMIN
               </span>
               <span
-                className={`font-extrabold text-4xl py-4 lg:py-8 items-center md:text-3xl xl:text-3xl leading-tight ${
+                className={`font-extrabold text-3xl py-4 lg:py-8 items-center md:text-3xl xl:text-3xl leading-tight ${
                   specialLayout
                     ? dynamicStyleParams.primaryText
                     : "text-primary-500"

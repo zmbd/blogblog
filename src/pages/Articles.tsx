@@ -74,7 +74,7 @@ const Articles = () => {
       ) : (
         <>
           <TopicHeading topic="Articles" />
-          <div className="grid md:grid-cols-2 2xl:grid-cols-3 grid-cols-1 w-9/10 md:w-grid-box-md lg:w-grid-box-lg xl:w-grid-box-xl  2xl:w-grid-box-2xl 3xl:w-gird-box-3xl items-center gap-x-14 gap-y-40 justify-items-center mb-32">
+          <div className="grid md:grid-cols-2 2xl:grid-cols-3 grid-cols-1 w-9/10 md:w-grid-box-md lg:w-grid-box-lg xl:w-grid-box-xl  2xl:w-grid-box-2xl 3xl:w-gird-box-3xl items-center gap-x-14 gap-y-12 md:gap-y-24 justify-items-center mb-32">
             {articles &&
               articles.map((post: any, i: number) => {
                 return (

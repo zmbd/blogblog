@@ -2,7 +2,9 @@
 
 # next-task
 
-## single article responsive styling
+## further responsivess
+
+## post written fix
 
 ## header bug when redirected to other page
 

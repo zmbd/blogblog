@@ -49,7 +49,7 @@ const MainPageLayout = (props: any) => {
     if (dimensions.width < 1024) setSmallScreen(true);
     else setSmallScreen(false);
 
-    if (dimensions.width < 768) setLowerMediumBreak(true);
+    if (dimensions.width < 640) setLowerMediumBreak(true);
     else setLowerMediumBreak(false);
   }, [dimensions]);
 
