@@ -30,6 +30,9 @@ module.exports = {
         '720px': '720px',
         '9/10': '94%',
       },
+      fontSize: {
+        '2xl2': ['21px', '32px']
+      },
       screens: {
         '3xl': '1920px', 
       },
