@@ -8,6 +8,7 @@ import { PostsContext } from "./context/PostsContext";
 import { db } from "./firebase/firebase";
 import MainPageLayout from "./layouts/MainPageLayout";
 import About from "./pages/About";
+import Admin from "./pages/Admin";
 import Articles from "./pages/Articles";
 import Contacts from "./pages/Contacts";
 import Home from "./pages/Home";
@@ -26,6 +27,7 @@ function App() {
             <Route path="*" element={<NotFound />} />
             <Route path="article/:articleId" element={<SingleArticle />} />
           </Route>
+          <Route path="admin" element={<Admin />} />
         </Routes>
       </BrowserRouter>
     </>

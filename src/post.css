@@ -8,3 +8,7 @@ hr {
   padding: 15px 0;
   border: 0;
 }
+
+code {
+  background: rgb(151, 145, 145);
+}
