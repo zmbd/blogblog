@@ -30,8 +30,12 @@ module.exports = {
         '720px': '720px',
         '9/10': '94%',
       },
+      padding: {
+        'p-20': '20%',
+      },
       fontSize: {
-        '2xl2': ['21px', '32px']
+        'post-default': ['17px', '31px'],
+        'post-2xl': ['18px', '31px'],
       },
       screens: {
         '3xl': '1920px', 
@@ -56,7 +60,7 @@ module.exports = {
 
       },
       fontFamily: {
-        'sans': ['Poppins'],
+        'sans': ['Poppins', 'Arial', 'sans-serif'],
       },
       animation: {
         'bounce-slow': 'bounce 2s linear infinite',
