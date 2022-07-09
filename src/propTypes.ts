@@ -27,3 +27,8 @@ export interface topicHeadingType {
 }
 
 export interface featuredArticlesType extends Array<postType> {}
+
+export type UserProps = {
+  userId: string;
+  isAdmin: boolean;
+}

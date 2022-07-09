@@ -97,7 +97,7 @@ module.exports = {
           'info': '#2094f3',
           'success': '#009485',
           'warning': '#ff9900',
-          'error': '#f01628',
+          'error': '#d43b48',
         },
       },
     ],
