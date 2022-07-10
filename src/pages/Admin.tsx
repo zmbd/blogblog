@@ -68,24 +68,27 @@ const Admin = () => {
               </button>
             </div>
           </div>
-          <div data-theme="mytheme" className="dropdown 2xl:mt-28 mt-16">
-            <label
-              tabIndex={0}
-              className="btn min-w-60 w-auto ml-16 bg-primary"
-            >
-              {singlePost ? singlePost.name : "Select post"}
-            </label>
-            <ul
-              tabIndex={0}
-              className="dropdown-content menu ml-16 p-2 shadow bg-base-100 rounded-box w-auto"
-            >
-              {posts &&
-                posts.map((post: any, i: number) => (
-                  <li onClick={() => handlePostSelection(post)} key={i}>
-                    <a>{post.name}</a>
-                  </li>
-                ))}
-            </ul>
+          <div className="w-full h-auto flex flex-row 2xl:mt-28 mt-16">
+            <div data-theme="mytheme" className="dropdown mr-16">
+              <label
+                tabIndex={0}
+                className="btn w-60 lg:w-96 ml-16 bg-primary overflow-hidden"
+              >
+                {singlePost ? singlePost.name : "Select post"}
+              </label>
+              <ul
+                tabIndex={0}
+                className="dropdown-content menu ml-16 p-2 shadow bg-base-100 rounded-box w-auto"
+              >
+                {posts &&
+                  posts.map((post: any, i: number) => (
+                    <li onClick={() => handlePostSelection(post)} key={i}>
+                      <a>{post.name}</a>
+                    </li>
+                  ))}
+              </ul>
+            </div>
+            <button className="btn btn-success">add post</button>
           </div>
           <div className="w-full h-auto flex justify-center my-20">
             {singlePost && (
