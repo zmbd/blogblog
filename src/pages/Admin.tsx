@@ -25,16 +25,25 @@ const Admin = () => {
   };
 
   const updateUserState = (value: UserProps): void => {
+    sessionStorage.setItem("LOGGED_USER", JSON.stringify(value));
     setUser(value);
   };
 
   const logUserOut = (): void => {
     setUser(null);
+    sessionStorage.clear();
     setLoading(true);
     const timeout = setTimeout(() => {
       setLoading(false);
     }, 1000);
   };
+
+  useEffect(() => {
+    if (sessionStorage.getItem("LOGGED_USER")) {
+      const user = JSON.parse(sessionStorage.getItem("LOGGED_USER") || "");
+      setUser(user);
+    }
+  }, []);
 
   const toggleCustomizePostModal = (): ReactElement => {
     return (
