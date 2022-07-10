@@ -1,11 +1,12 @@
 import Login from "../components/Login";
 
 import { collection, getDocs } from "firebase/firestore";
-import React, { useEffect, useState } from "react";
+import React, { ReactElement, useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { db } from "../firebase/firebase";
 import { UserProps } from "../propTypes";
 import Spinner from "../components/Spinner";
+import CustomizePost from "../components/CustomizePost";
 
 const Admin = () => {
   const [posts, setPosts] = useState<any>();
@@ -33,6 +34,31 @@ const Admin = () => {
     const timeout = setTimeout(() => {
       setLoading(false);
     }, 1000);
+  };
+
+  const toggleCustomizePostModal = (): ReactElement => {
+    return (
+      <>
+        <input type="checkbox" id="my-modal-3" className="modal-toggle" />
+        <div className="modal">
+          <div className="modal-box relative">
+            <label
+              htmlFor="my-modal-3"
+              className="btn btn-sm btn-circle absolute right-2 top-2"
+            >
+              ✕
+            </label>
+            <h3 className="text-lg font-bold">
+              Congratulations random Internet user!
+            </h3>
+            <p className="py-4">
+              Youve been selected for a chance to get one year of subscription
+              to use Wikipedia for free!
+            </p>
+          </div>
+        </div>
+      </>
+    );
   };
 
   useEffect(() => {
@@ -88,7 +114,15 @@ const Admin = () => {
                   ))}
               </ul>
             </div>
-            <button className="btn btn-success">add post</button>
+            <div>
+              <label
+                htmlFor="my-modal-5"
+                className="btn modal-button btn-success"
+              >
+                add post
+              </label>
+              <CustomizePost />
+            </div>
           </div>
           <div className="w-full h-auto flex justify-center my-20">
             {singlePost && (
@@ -108,7 +142,36 @@ const Admin = () => {
                       <button className="btn w-full btn-warning">Edit</button>
                     </div>
                     <div className="h-full w-1/5">
-                      <button className="btn w-full btn-error">Delete</button>
+                      <label
+                        htmlFor="my-modal-3"
+                        className="btn w-full modal-button btn-error"
+                      >
+                        delete
+                      </label>
+                      <input
+                        type="checkbox"
+                        id="my-modal-3"
+                        className="modal-toggle"
+                      />
+                      <div className="modal">
+                        <div className="modal-box relative">
+                          <label
+                            htmlFor="my-modal-3"
+                            className="btn btn-sm btn-circle absolute right-2 top-2"
+                          >
+                            ✕
+                          </label>
+                          <h3 className="text-lg font-bold mr-4">
+                            This action is {""}
+                            <span className="text-error">IRREVERSIBLE</span> and
+                            cannot be undone. Please confirm your action by
+                            clicking on the delete button below.
+                          </h3>
+                          <div className="modal-action">
+                            <a className="btn hover:btn-error">Delete</a>
+                          </div>
+                        </div>
+                      </div>
                     </div>
                   </div>
                 </div>
