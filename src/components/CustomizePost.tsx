@@ -1,6 +1,12 @@
 import React from "react";
 
 const CustomizePost = () => {
+  const handleTextAreaInputChange = (): void => {
+    const target = document.getElementById("textarea-post") as HTMLElement;
+    target.style.height = "";
+    target.style.height = `${target.scrollHeight}px`;
+  };
+
   return (
     <>
       <input type="checkbox" id="my-modal-5" className="modal-toggle" />
@@ -16,7 +22,9 @@ const CustomizePost = () => {
           <div className="p-9 w-full">
             <textarea
               className="textarea w-full textarea-primary"
-              placeholder="Bio"
+              placeholder="Post content"
+              id="textarea-post"
+              onInput={() => handleTextAreaInputChange()}
             ></textarea>
           </div>
         </div>
