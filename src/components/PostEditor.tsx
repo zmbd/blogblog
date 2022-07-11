@@ -1,8 +1,6 @@
 import { Editor, EditorContent, useEditor } from "@tiptap/react";
 import StarterKit from "@tiptap/starter-kit";
 import React, { useCallback, useRef, useState } from "react";
-
-import { AiOutlineBold } from "react-icons/ai";
 import EditorMenubar from "./EditorMenubar";
 
 import "../EditorMenu.css";
