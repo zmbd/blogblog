@@ -6,20 +6,36 @@ import EditorMenubar from "./EditorMenubar";
 import "../EditorMenu.css";
 import { doc, addDoc, collection } from "firebase/firestore";
 import { db } from "../firebase/firebase";
+import Input from "./Input";
 
 const PostEditor = () => {
+  const [title, setTitle] = useState("");
+  const [author, setAuthor] = useState("");
+  const [imgUrl, setImgUrl] = useState("");
+
   const editor: Editor | null = useEditor({
     extensions: [StarterKit],
     content: "<p>Hello World!</p>",
   });
 
+  const titleSetter = (value: string) => {
+    setTitle(value);
+  };
+
+  const authorSetter = (value: string) => {
+    setAuthor(value);
+  };
+
+  const imgUrlSetter = (value: string) => {
+    setImgUrl(value);
+  };
+
   const publishPost = async () => {
     const docRef = await addDoc(collection(db, "posts"), {
-      authorLabel: "John Doe",
-      imgUrl:
-        "https://images.unsplash.com/photo-1586880244406-556ebe35f282?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=3387&q=80",
-      name: "Custom generated post",
-      pathname: "/article/custom-generated-post",
+      authorLabel: author,
+      imgUrl: imgUrl,
+      name: title,
+      pathname: "/article/" + title.replace(/\s/g, "-"),
       post: editor?.getHTML(),
       writtenBy: "John Doe",
       writtenOn: new Date(),
@@ -39,7 +55,26 @@ const PostEditor = () => {
             ✕
           </label>
           <h3 className="font-bold text-lg">Post Customize Tool</h3>
-          <div className="w-full h-auto flex flex-col justify-start items-center"></div>
+          <div className="w-full grid grid-cols-1 lg:grid-cols-2 pb-9">
+            <Input
+              stateSetter={titleSetter}
+              state={title}
+              label="Post title"
+              placeholder="Enter post title"
+            />
+            <Input
+              stateSetter={authorSetter}
+              state={author}
+              label="Author"
+              placeholder="Enter author name"
+            />
+            <Input
+              stateSetter={imgUrlSetter}
+              state={imgUrl}
+              label="Image URL"
+              placeholder="Enter image URL"
+            />
+          </div>
           <div className="w-full flex flex-col border border-black">
             <div
               id="button-group"

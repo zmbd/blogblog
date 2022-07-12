@@ -6,7 +6,7 @@ const Navigation = (props?: any) => {
   const { isSmall } = props;
   return (
     <ul
-      className={`font-medium ${
+      className={`font-medium list-none ${
         isSmall
           ? "flex flex-col justify-start items-start"
           : "flex flex-row justify-between items-center"
