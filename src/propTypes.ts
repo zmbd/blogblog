@@ -9,7 +9,7 @@ export interface propTypes {
 export interface postType {
   name: string;
   writtenBy: string;
-  writtenOn: string;
+  writtenOn: Date;
   authorLabel: string;
   post: string;
   imgUrl: string;
@@ -31,4 +31,9 @@ export interface featuredArticlesType extends Array<postType> {}
 export type UserProps = {
   userId: string;
   isAdmin: boolean;
+}
+
+export type EditorProps = {
+  post?: postType;
+  closeModal: () => void;
 }

@@ -4,18 +4,21 @@ import { collection, getDocs } from "firebase/firestore";
 import React, { ReactElement, useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { db } from "../firebase/firebase";
-import { UserProps } from "../propTypes";
+import { postType, UserProps } from "../propTypes";
 import Spinner from "../components/Spinner";
 import PostEditor from "../components/PostEditor";
 
 const Admin = () => {
-  const [posts, setPosts] = useState<any>();
-  const [singlePost, setSinglePost] = useState<any>();
+  const [posts, setPosts] = useState<postType[]>();
+  const [singlePost, setSinglePost] = useState<postType>();
   const [user, setUser] = useState<UserProps | null>(null);
   const [loading, setLoading] = useState<boolean>(false);
+  const [displayEditor, setDisplayEditor] = useState<boolean>(false);
+  const [displayAddPostEditor, setDisplayAddPostEditor] =
+    useState<boolean>(false);
   const postsCollectionRef = collection(db, "posts");
 
-  const handlePostSelection = (post: any): void => {
+  const handlePostSelection = (post: postType): void => {
     const dropdownElement =
       document.querySelector<HTMLElement>(".dropdown-content");
     dropdownElement?.classList.toggle("dropdown-open");
@@ -38,14 +41,19 @@ const Admin = () => {
     }, 1000);
   };
 
+  const closeEditorModal = (): void => {
+    setDisplayEditor(false);
+  };
+
+  const closeAddPostEditorModal = (): void => {
+    setDisplayAddPostEditor(false);
+  };
+
   useEffect(() => {
     if (sessionStorage.getItem("LOGGED_USER")) {
       const user = JSON.parse(sessionStorage.getItem("LOGGED_USER") || "");
       setUser(user);
     }
-  }, []);
-
-  useEffect(() => {
     const getPosts = async () => {
       const data = await getDocs(postsCollectionRef);
       setPosts(data.docs.map((doc: any) => ({ ...doc.data() })));
@@ -100,17 +108,20 @@ const Admin = () => {
             </div>
             <div>
               <label
-                htmlFor="my-modal-5"
+                htmlFor="editormodal"
+                onClick={() => setDisplayAddPostEditor(true)}
                 className="btn modal-button btn-success"
               >
                 add post
               </label>
-              <PostEditor />
+              {displayAddPostEditor && (
+                <PostEditor closeModal={closeAddPostEditorModal} />
+              )}
             </div>
           </div>
           <div className="w-full h-auto flex justify-center my-20">
             {singlePost && (
-              <div className="card w-full sm:w-72 h-96 md:h-admin-card-md-h lg:w-96 bg-base-100 shadow-xl">
+              <div className="card w-full sm:w-72 h-96 lg:h-admin-card-md-h lg:w-96 bg-base-100 shadow-xl">
                 <figure className="h-3/5">
                   <img
                     src={singlePost.imgUrl}
@@ -123,7 +134,19 @@ const Admin = () => {
                   <p>Editable post, choose options below.</p>
                   <div className="card-actions flex-nowrap flex-row w-full h-full">
                     <div className="w-full h-full">
-                      <button className="btn w-full btn-warning">Edit</button>
+                      <label
+                        htmlFor="editormodal"
+                        onClick={() => setDisplayEditor(true)}
+                        className="btn w-full btn-warning modal-button"
+                      >
+                        edit post
+                      </label>
+                      {displayEditor && (
+                        <PostEditor
+                          post={singlePost}
+                          closeModal={closeEditorModal}
+                        />
+                      )}
                     </div>
                     <div className="h-full w-1/5">
                       <label

@@ -1,14 +1,17 @@
 import { Editor, EditorContent, useEditor } from "@tiptap/react";
 import StarterKit from "@tiptap/starter-kit";
-import React, { useCallback, useRef, useState } from "react";
+import React, { useCallback, useEffect, useRef, useState } from "react";
 import EditorMenubar from "./EditorMenubar";
 
 import "../EditorMenu.css";
 import { doc, addDoc, collection } from "firebase/firestore";
 import { db } from "../firebase/firebase";
 import Input from "./Input";
+import { EditorProps } from "../propTypes";
 
-const PostEditor = () => {
+const PostEditor = (props: EditorProps) => {
+  const { post, closeModal } = props;
+
   const [title, setTitle] = useState("");
   const [authorLabel, setAuthorLabel] = useState("");
   const [imgUrl, setImgUrl] = useState("");
@@ -17,7 +20,9 @@ const PostEditor = () => {
 
   const editor: Editor | null = useEditor({
     extensions: [StarterKit],
-    content: "<p>Hello World!</p>",
+    content: post?.post
+      ? post.post
+      : "<h1>This is a post template</h1><hr><p>Edit me please</p>",
   });
 
   const titleSetter = (value: string) => {
@@ -53,17 +58,26 @@ const PostEditor = () => {
     console.log(docRef.id);
   };
 
+  useEffect(() => {
+    if (post) {
+      setTitle(post.name);
+      setAuthorLabel(post.authorLabel);
+      setImgUrl(post.imgUrl);
+      setAuthorName(post.writtenBy);
+    }
+  }, [post]);
+
   return (
     <>
-      <input type="checkbox" id="my-modal-5" className="modal-toggle" />
-      <div className="modal">
+      <input type="checkbox" id="editormodal" className="modal-toggle" />
+      <div className="modal" id="editormodal">
         <div className="modal-box w-11/12 max-w-5xl">
-          <label
+          {/* <label
             htmlFor="my-modal-5"
             className="btn btn-sm btn-circle absolute right-2 top-2"
           >
             ✕
-          </label>
+          </label> */}
           <h3 className="font-bold text-lg">Post Customize Tool</h3>
           <div className="w-full grid grid-cols-1 lg:grid-cols-2 pb-9">
             <Input
@@ -112,7 +126,13 @@ const PostEditor = () => {
             <button onClick={() => publishPost()} className="btn btn-success">
               Publish
             </button>
-            <button className="btn">Cancel</button>
+            <label
+              onClick={() => closeModal()}
+              htmlFor="editormodal"
+              className="btn"
+            >
+              Cancel
+            </label>
           </div>
         </div>
       </div>
