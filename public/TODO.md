@@ -4,7 +4,11 @@
 
 ## further responsivess
 
-## post written fix
+## implementation of date when post was written
+
+## admin page form validation, cancel button implementation, delete actions, form validation
+
+## fix pathname validation, so no characters except alphabet letters are allowed when creating the post, so form validation.
 
 ## header bug when redirected to other page
 
