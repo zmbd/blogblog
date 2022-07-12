@@ -10,8 +10,10 @@ import Input from "./Input";
 
 const PostEditor = () => {
   const [title, setTitle] = useState("");
-  const [author, setAuthor] = useState("");
+  const [authorLabel, setAuthorLabel] = useState("");
   const [imgUrl, setImgUrl] = useState("");
+  const [authorName, setAuthorName] = useState("");
+  const [authorImage, setAuthorImage] = useState("");
 
   const editor: Editor | null = useEditor({
     extensions: [StarterKit],
@@ -22,22 +24,30 @@ const PostEditor = () => {
     setTitle(value);
   };
 
-  const authorSetter = (value: string) => {
-    setAuthor(value);
+  const authorLabelSetter = (value: string) => {
+    setAuthorLabel(value);
   };
 
   const imgUrlSetter = (value: string) => {
     setImgUrl(value);
   };
 
+  const authorNameSetter = (value: string) => {
+    setAuthorName(value);
+  };
+
+  const authorImageSetter = (value: string) => {
+    setAuthorImage(value);
+  };
+
   const publishPost = async () => {
     const docRef = await addDoc(collection(db, "posts"), {
-      authorLabel: author,
+      authorLabel: authorLabel,
       imgUrl: imgUrl,
       name: title,
       pathname: "/article/" + title.replace(/\s/g, "-"),
       post: editor?.getHTML(),
-      writtenBy: "John Doe",
+      writtenBy: authorName,
       writtenOn: new Date(),
     });
     console.log(docRef.id);
@@ -63,16 +73,28 @@ const PostEditor = () => {
               placeholder="Enter post title"
             />
             <Input
-              stateSetter={authorSetter}
-              state={author}
-              label="Author"
-              placeholder="Enter author name"
+              stateSetter={authorLabelSetter}
+              state={authorLabel}
+              label="Author label"
+              placeholder="Enter author label"
             />
             <Input
               stateSetter={imgUrlSetter}
               state={imgUrl}
               label="Image URL"
               placeholder="Enter image URL"
+            />
+            <Input
+              stateSetter={authorNameSetter}
+              state={authorName}
+              label="Enter author name"
+              placeholder="Author name"
+            />
+            <Input
+              stateSetter={authorImageSetter}
+              state={authorImage}
+              label="Author Image URL"
+              placeholder="Enter author iamge URL"
             />
           </div>
           <div className="w-full flex flex-col border border-black">
