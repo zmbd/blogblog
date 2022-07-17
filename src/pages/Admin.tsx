@@ -115,13 +115,13 @@ const Admin = () => {
                 add post
               </label>
               {displayAddPostEditor && (
-                <PostEditor closeModal={closeAddPostEditorModal} />
+                <PostEditor closeModal={closeAddPostEditorModal} edit={false} />
               )}
             </div>
           </div>
           <div className="w-full h-auto flex justify-center my-20">
             {singlePost && (
-              <div className="card w-full sm:w-72 h-96 lg:h-admin-card-md-h lg:w-96 bg-base-100 shadow-xl">
+              <div className="card w-full h-96 lg:h-admin-card-md-h lg:w-96 bg-base-100 shadow-xl">
                 <figure className="h-3/5">
                   <img
                     src={singlePost.imgUrl}
@@ -145,6 +145,7 @@ const Admin = () => {
                         <PostEditor
                           post={singlePost}
                           closeModal={closeEditorModal}
+                          edit={true}
                         />
                       )}
                     </div>

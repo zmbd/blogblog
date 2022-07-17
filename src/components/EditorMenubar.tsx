@@ -22,7 +22,7 @@ const EditorMenubar = (props: { editor: Editor | null }) => {
           xmlns="http://www.w3.org/2000/svg"
           viewBox="0 0 24 24"
           width="24"
-          height="full"
+          height="100%"
           className={editor.isActive("bold") ? activeStyling : ""}
         >
           <path fill="none" d="M0 0h24v24H0z" />
@@ -40,7 +40,7 @@ const EditorMenubar = (props: { editor: Editor | null }) => {
           xmlns="http://www.w3.org/2000/svg"
           viewBox="0 0 24 24"
           width="24"
-          height="full"
+          height="100%"
           className={editor.isActive("italic") ? activeStyling : ""}
         >
           <path fill="none" d="M0 0h24v24H0z" />
@@ -58,7 +58,7 @@ const EditorMenubar = (props: { editor: Editor | null }) => {
           xmlns="http://www.w3.org/2000/svg"
           viewBox="0 0 24 24"
           width="24"
-          height="full"
+          height="100%"
           className={editor.isActive("strike") ? activeStyling : ""}
         >
           <path fill="none" d="M0 0h24v24H0z" />
@@ -76,7 +76,7 @@ const EditorMenubar = (props: { editor: Editor | null }) => {
           xmlns="http://www.w3.org/2000/svg"
           viewBox="0 0 24 24"
           width="24"
-          height="full"
+          height="100%"
           className={editor.isActive("code") ? activeStyling : ""}
         >
           <path fill="none" d="M0 0h24v24H0z" />
@@ -101,7 +101,7 @@ const EditorMenubar = (props: { editor: Editor | null }) => {
           xmlns="http://www.w3.org/2000/svg"
           viewBox="0 0 24 24"
           width="24"
-          height="full"
+          height="100%"
           className={editor.isActive("paragraph") ? activeStyling : ""}
         >
           <path fill="none" d="M0 0h24v24H0z" />
@@ -119,7 +119,7 @@ const EditorMenubar = (props: { editor: Editor | null }) => {
           xmlns="http://www.w3.org/2000/svg"
           viewBox="0 0 24 24"
           width="24"
-          height="full"
+          height="100%"
           className={
             editor.isActive("heading", { level: 1 }) ? activeStyling : ""
           }
@@ -139,7 +139,7 @@ const EditorMenubar = (props: { editor: Editor | null }) => {
           xmlns="http://www.w3.org/2000/svg"
           viewBox="0 0 24 24"
           width="24"
-          height="full"
+          height="100%"
           className={
             editor.isActive("heading", { level: 2 }) ? activeStyling : ""
           }
@@ -159,7 +159,7 @@ const EditorMenubar = (props: { editor: Editor | null }) => {
           xmlns="http://www.w3.org/2000/svg"
           viewBox="0 0 24 24"
           width="24"
-          height="full"
+          height="100%"
           className={
             editor.isActive("heading", { level: 3 }) ? activeStyling : ""
           }
@@ -179,7 +179,7 @@ const EditorMenubar = (props: { editor: Editor | null }) => {
           xmlns="http://www.w3.org/2000/svg"
           viewBox="0 0 24 24"
           width="24"
-          height="full"
+          height="100%"
           className={
             editor.isActive("heading", { level: 4 }) ? activeStyling : ""
           }
@@ -199,7 +199,7 @@ const EditorMenubar = (props: { editor: Editor | null }) => {
           xmlns="http://www.w3.org/2000/svg"
           viewBox="0 0 24 24"
           width="24"
-          height="full"
+          height="100%"
           className={
             editor.isActive("heading", { level: 5 }) ? activeStyling : ""
           }
@@ -219,7 +219,7 @@ const EditorMenubar = (props: { editor: Editor | null }) => {
           xmlns="http://www.w3.org/2000/svg"
           viewBox="0 0 24 24"
           width="24"
-          height="full"
+          height="100%"
           className={
             editor.isActive("heading", { level: 6 }) ? activeStyling : ""
           }
@@ -240,7 +240,7 @@ const EditorMenubar = (props: { editor: Editor | null }) => {
           xmlns="http://www.w3.org/2000/svg"
           viewBox="0 0 24 24"
           width="24"
-          height="full"
+          height="100%"
           className={editor.isActive("bulletList") ? activeStyling : ""}
         >
           <path fill="none" d="M0 0h24v24H0z" />
@@ -258,7 +258,7 @@ const EditorMenubar = (props: { editor: Editor | null }) => {
           xmlns="http://www.w3.org/2000/svg"
           viewBox="0 0 24 24"
           width="24"
-          height="full"
+          height="100%"
           className={editor.isActive("orderedList") ? activeStyling : ""}
         >
           <path fill="none" d="M0 0h24v24H0z" />
@@ -282,7 +282,7 @@ const EditorMenubar = (props: { editor: Editor | null }) => {
           xmlns="http://www.w3.org/2000/svg"
           viewBox="0 0 24 24"
           width="24"
-          height="full"
+          height="100%"
           className={editor.isActive("blockquote") ? activeStyling : ""}
         >
           <path fill="none" d="M0 0h24v24H0z" />
@@ -300,7 +300,7 @@ const EditorMenubar = (props: { editor: Editor | null }) => {
           xmlns="http://www.w3.org/2000/svg"
           viewBox="0 0 24 24"
           width="24"
-          height="full"
+          height="100%"
           className={editor.isActive("horizontalRule") ? activeStyling : ""}
         >
           <path fill="none" d="M0 0h24v24H0z" />
@@ -319,7 +319,7 @@ const EditorMenubar = (props: { editor: Editor | null }) => {
           xmlns="http://www.w3.org/2000/svg"
           viewBox="0 0 24 24"
           width="24"
-          height="full"
+          height="100%"
         >
           <path fill="none" d="M0 0h24v24H0z" />
           <path
@@ -336,7 +336,7 @@ const EditorMenubar = (props: { editor: Editor | null }) => {
           xmlns="http://www.w3.org/2000/svg"
           viewBox="0 0 24 24"
           width="24"
-          height="full"
+          height="100%"
         >
           <path fill="none" d="M0 0h24v24H0z" />
           <path

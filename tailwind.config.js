@@ -22,7 +22,7 @@ module.exports = {
         'article-item-w-xl': '24em',
         'article-item-w-2xl': '26em',
         'article-item-w-3xl': '28em',
-        'admin-card-md-h': '32em',
+        'admin-card-md-h': '38em',
         // 'aritcle-item-h-md': '34em',
         // 'article-item-h-xl': '36em',
         'grid-box-md': '640px',

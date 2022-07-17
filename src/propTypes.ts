@@ -36,4 +36,6 @@ export type UserProps = {
 export type EditorProps = {
   post?: postType;
   closeModal: () => void;
+  edit: boolean;
+
 }
