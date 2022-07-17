@@ -4,13 +4,20 @@ import React, { useCallback, useEffect, useRef, useState } from "react";
 import EditorMenubar from "./EditorMenubar";
 
 import "../EditorMenu.css";
-import { doc, addDoc, collection } from "firebase/firestore";
+import {
+  doc,
+  addDoc,
+  collection,
+  getDocs,
+  getDoc,
+  updateDoc,
+} from "firebase/firestore";
 import { db } from "../firebase/firebase";
 import Input from "./Input";
 import { EditorProps } from "../propTypes";
 
 const PostEditor = (props: EditorProps) => {
-  const { post, closeModal } = props;
+  const { post, closeModal, edit } = props;
 
   const [title, setTitle] = useState("");
   const [authorLabel, setAuthorLabel] = useState("");
@@ -25,37 +32,74 @@ const PostEditor = (props: EditorProps) => {
       : "<h1>This is a post template</h1><hr><p>Edit me please</p>",
   });
 
-  const titleSetter = (value: string) => {
+  const titleSetter = (value: string): void => {
     setTitle(value);
   };
 
-  const authorLabelSetter = (value: string) => {
+  const authorLabelSetter = (value: string): void => {
     setAuthorLabel(value);
   };
 
-  const imgUrlSetter = (value: string) => {
+  const imgUrlSetter = (value: string): void => {
     setImgUrl(value);
   };
 
-  const authorNameSetter = (value: string) => {
+  const authorNameSetter = (value: string): void => {
     setAuthorName(value);
   };
 
-  const authorImageSetter = (value: string) => {
+  const authorImageSetter = (value: string): void => {
     setAuthorImage(value);
   };
 
   const publishPost = async () => {
-    const docRef = await addDoc(collection(db, "posts"), {
-      authorLabel: authorLabel,
-      imgUrl: imgUrl,
-      name: title,
-      pathname: "/article/" + title.replace(/\s/g, "-"),
-      post: editor?.getHTML(),
-      writtenBy: authorName,
-      writtenOn: new Date(),
-    });
-    console.log(docRef.id);
+    if (
+      editor?.getHTML &&
+      title &&
+      authorLabel &&
+      imgUrl &&
+      authorName &&
+      authorImage
+    ) {
+      const modal = document.querySelector<HTMLInputElement>("#editormodal");
+
+      if (!edit) {
+        const docRef = await addDoc(collection(db, "posts"), {
+          authorLabel: authorLabel,
+          imgUrl: imgUrl,
+          name: title,
+          pathname: "/article/" + title.replace(/\s/g, "-"),
+          post: editor?.getHTML(),
+          writtenBy: authorName,
+          writtenOn: new Date(),
+        });
+        return;
+      }
+
+      if (
+        post?.post !== editor?.getHTML() ||
+        post?.name !== title ||
+        post?.authorLabel !== authorLabel ||
+        post?.imgUrl !== imgUrl ||
+        post?.writtenBy !== authorName
+      ) {
+        let _post: any;
+        await getDocs(collection(db, "posts")).then((data) => {
+          _post = data.docs.find((doc: any) => doc.data().name === title);
+        });
+
+        const postDocRef = await doc(db, "posts", _post?.id);
+        await updateDoc(postDocRef, {
+          authorImage: authorImage,
+          authorLabel: authorLabel,
+          imgUrl: imgUrl,
+          name: title,
+          post: editor?.getHTML(),
+          writtenBy: authorName,
+        });
+        return;
+      }
+    }
   };
 
   useEffect(() => {
@@ -70,7 +114,7 @@ const PostEditor = (props: EditorProps) => {
   return (
     <>
       <input type="checkbox" id="editormodal" className="modal-toggle" />
-      <div className="modal" id="editormodal">
+      <div className="modal">
         <div className="modal-box w-11/12 max-w-5xl">
           {/* <label
             htmlFor="my-modal-5"
@@ -124,7 +168,7 @@ const PostEditor = (props: EditorProps) => {
           </div>
           <div className="modal-action">
             <button onClick={() => publishPost()} className="btn btn-success">
-              Publish
+              {post ? "Update" : "Publish"}
             </button>
             <label
               onClick={() => closeModal()}
