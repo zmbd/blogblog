@@ -5,7 +5,7 @@ import React, {
   useMemo,
   useState,
 } from "react";
-import { propTypes } from "../propTypes";
+import { postType, propTypes } from "../propTypes";
 
 import TopicHeading from "../components/TopicHeading";
 import showContentsObserver from "../functions/IntersectionObserver";
@@ -40,6 +40,7 @@ const Articles = () => {
   useEffect(() => {
     let timeout: any;
     if (!posts) {
+      setLoading(true);
       timeout = setTimeout(() => {
         const getPosts = async () => {
           const data = await getDocs(postsCollectionRef);
@@ -76,7 +77,7 @@ const Articles = () => {
           <TopicHeading topic="Articles" />
           <div className="grid md:grid-cols-2 2xl:grid-cols-3 grid-cols-1 w-9/10 md:w-grid-box-md lg:w-grid-box-lg xl:w-grid-box-xl  2xl:w-grid-box-2xl 3xl:w-gird-box-3xl items-center gap-x-14 gap-y-12 md:gap-y-24 justify-items-center mb-32">
             {articles &&
-              articles.map((post: any, i: number) => {
+              articles.map((post: postType, i: number) => {
                 return (
                   <CardContainer
                     post={post}

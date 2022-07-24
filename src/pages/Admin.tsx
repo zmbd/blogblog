@@ -99,7 +99,7 @@ const Admin = () => {
                 className="dropdown-content menu ml-16 p-2 shadow bg-base-100 rounded-box w-auto"
               >
                 {posts &&
-                  posts.map((post: any, i: number) => (
+                  posts.map((post: postType, i: number) => (
                     <li onClick={() => handlePostSelection(post)} key={i}>
                       <a>{post.name}</a>
                     </li>

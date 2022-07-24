@@ -1,6 +1,21 @@
 import React, { useContext, useEffect, useLayoutEffect, useState } from "react";
 import { ScreenContext } from "../context/screenContext";
 
+const MONTHS = [
+  "Jan",
+  "Feb",
+  "Mar",
+  "Apr",
+  "May",
+  "Jun",
+  "Jul",
+  "Aug",
+  "Sept",
+  "Oct",
+  "Nov",
+  "Dec",
+];
+
 const CardContainerContent = (props: any) => {
   const {
     post,
@@ -17,6 +32,7 @@ const CardContainerContent = (props: any) => {
   });
 
   const isEven: boolean = order_key % 2 === 0 ? true : false;
+  const date = new Date(post.writtenOn.seconds * 1000);
 
   useEffect(() => {
     if (isEven && specialLayout) {
@@ -89,7 +105,10 @@ const CardContainerContent = (props: any) => {
           >
             <div className="w-full h-fit flex p-2 flex-col justify-start items-start">
               <span className="font-medium text-xs sm:text-sm xl:text-base pt-5 text-primary-100">
-                NaN, ADMIN
+                {`${
+                  MONTHS[date.getMonth()]
+                }. ${date.getDate()}, ${date.getFullYear()}. `}
+                ADMIN
               </span>
               <span
                 className={`font-extrabold text-3xl py-4 lg:py-8 items-center md:text-3xl xl:text-3xl leading-tight ${
