@@ -1,9 +1,9 @@
-import { Editor, EditorContent, useEditor } from "@tiptap/react";
-import StarterKit from "@tiptap/starter-kit";
-import React, { useCallback, useEffect, useRef, useState } from "react";
-import EditorMenubar from "./EditorMenubar";
+import { Editor, EditorContent, useEditor } from '@tiptap/react';
+import StarterKit from '@tiptap/starter-kit';
+import React, { useCallback, useEffect, useRef, useState } from 'react';
+import EditorMenubar from './EditorMenubar';
 
-import "../EditorMenu.css";
+import '../EditorMenu.css';
 import {
   doc,
   addDoc,
@@ -11,25 +11,25 @@ import {
   getDocs,
   getDoc,
   updateDoc,
-} from "firebase/firestore";
-import { db } from "../firebase/firebase";
-import Input from "./Input";
-import { EditorProps } from "../propTypes";
+} from 'firebase/firestore';
+import { db } from '../firebase/firebase';
+import Input from './Input';
+import { EditorProps } from '../propTypes';
 
 const PostEditor = (props: EditorProps) => {
   const { post, closeModal, edit } = props;
 
-  const [title, setTitle] = useState("");
-  const [authorLabel, setAuthorLabel] = useState("");
-  const [imgUrl, setImgUrl] = useState("");
-  const [authorName, setAuthorName] = useState("");
-  const [authorImage, setAuthorImage] = useState("");
+  const [title, setTitle] = useState('');
+  const [authorLabel, setAuthorLabel] = useState('');
+  const [imgUrl, setImgUrl] = useState('');
+  const [authorName, setAuthorName] = useState('');
+  const [authorImage, setAuthorImage] = useState('');
 
   const editor: Editor | null = useEditor({
     extensions: [StarterKit],
     content: post?.post
       ? post.post
-      : "<h1>This is a post template</h1><hr><p>Edit me please</p>",
+      : '<h1>This is a post template</h1><hr><p>Edit me please</p>',
   });
 
   const titleSetter = (value: string): void => {
@@ -61,14 +61,14 @@ const PostEditor = (props: EditorProps) => {
       authorName &&
       authorImage
     ) {
-      const modal = document.querySelector<HTMLInputElement>("#editormodal");
+      const modal = document.querySelector<HTMLInputElement>('#editormodal');
 
       if (!edit) {
-        const docRef = await addDoc(collection(db, "posts"), {
+        const docRef = await addDoc(collection(db, 'posts'), {
           authorLabel: authorLabel,
           imgUrl: imgUrl,
           name: title,
-          pathname: "/article/" + title.replace(/\s/g, "-"),
+          pathname: '/article/' + title.replace(/\s/g, '-'),
           post: editor?.getHTML(),
           writtenBy: authorName,
           writtenOn: new Date(),
@@ -84,11 +84,12 @@ const PostEditor = (props: EditorProps) => {
         post?.writtenBy !== authorName
       ) {
         let _post: any;
-        await getDocs(collection(db, "posts")).then((data) => {
+        await getDocs(collection(db, 'posts')).then((data) => {
           _post = data.docs.find((doc: any) => doc.data().name === title);
         });
 
-        const postDocRef = await doc(db, "posts", _post?.id);
+        console.log(_post);
+        const postDocRef = await doc(db, 'posts', _post?.id);
         await updateDoc(postDocRef, {
           authorImage: authorImage,
           authorLabel: authorLabel,
@@ -116,12 +117,6 @@ const PostEditor = (props: EditorProps) => {
       <input type="checkbox" id="editormodal" className="modal-toggle" />
       <div className="modal">
         <div className="modal-box w-11/12 max-w-5xl">
-          {/* <label
-            htmlFor="my-modal-5"
-            className="btn btn-sm btn-circle absolute right-2 top-2"
-          >
-            ✕
-          </label> */}
           <h3 className="font-bold text-lg">Post Customize Tool</h3>
           <div className="w-full grid grid-cols-1 lg:grid-cols-2 pb-9">
             <Input
@@ -129,30 +124,35 @@ const PostEditor = (props: EditorProps) => {
               state={title}
               label="Post title"
               placeholder="Enter post title"
+              data-testid="post-title"
             />
             <Input
               stateSetter={authorLabelSetter}
               state={authorLabel}
               label="Author label"
               placeholder="Enter author label"
+              data-testid="author-label"
             />
             <Input
               stateSetter={imgUrlSetter}
               state={imgUrl}
               label="Image URL"
               placeholder="Enter image URL"
+              data-testid="image-url"
             />
             <Input
               stateSetter={authorNameSetter}
               state={authorName}
               label="Enter author name"
               placeholder="Author name"
+              data-testid="author-name"
             />
             <Input
               stateSetter={authorImageSetter}
               state={authorImage}
               label="Author Image URL"
               placeholder="Enter author iamge URL"
+              data-testid="author-image-url"
             />
           </div>
           <div className="w-full flex flex-col border border-black">
@@ -167,8 +167,12 @@ const PostEditor = (props: EditorProps) => {
             </div>
           </div>
           <div className="modal-action">
-            <button onClick={() => publishPost()} className="btn btn-success">
-              {post ? "Update" : "Publish"}
+            <button
+              onClick={() => publishPost()}
+              className="btn btn-success"
+              data-testid="publish-update-button"
+            >
+              {post ? 'Update' : 'Publish'}
             </button>
             <label
               onClick={() => closeModal()}
