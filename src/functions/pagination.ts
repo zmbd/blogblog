@@ -1,4 +1,4 @@
-export const ARTICLES_PER_PAGE = 9;
+import { ARTICLES_PER_PAGE } from "../constants/constants";
 
 export const pagination = (articles: any) => {
   const pages = Math.ceil(articles.length / ARTICLES_PER_PAGE);

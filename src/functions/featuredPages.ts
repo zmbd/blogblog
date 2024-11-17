@@ -1,4 +1,4 @@
-import { ARTICLES_PER_PAGE } from "./pagination";
+import { ARTICLES_PER_PAGE } from "../constants/constants";
 
 export const featuredPages = (articles: number, page: number) => {
   const pages = Math.ceil(articles / ARTICLES_PER_PAGE);

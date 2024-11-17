@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { ARTICLES_PER_PAGE } from "../functions/pagination";
+import { ARTICLES_PER_PAGE } from "../constants/constants";
 import NavigationButton from "./NavigationButton";
 import {featuredPages} from "../functions/featuredPages";
 
