@@ -8,7 +8,7 @@ import React, {
 import { postType, propTypes } from "../propTypes";
 
 import TopicHeading from "../components/TopicHeading";
-import showContentsObserver from "../functions/IntersectionObserver";
+import {showContentsObserver} from "../functions/IntersectionObserver";
 import { pagination } from "../functions/pagination";
 import Pagination from "../components/Pagination";
 import { PostsContext } from "../context/PostsContext";

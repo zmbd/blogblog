@@ -1,4 +1,4 @@
-const showContentsObserver = (classname: string, threshold: number, rootMargin: string, active: string) => {
+export const showContentsObserver = (classname: string, threshold: number, rootMargin: string, active: string) => {
   const showContents = (entries: any) => {
     entries.forEach((entry: any) => {
       if (entry.isIntersecting) {
@@ -17,4 +17,3 @@ const showContentsObserver = (classname: string, threshold: number, rootMargin: 
   });
 }
 
-export default showContentsObserver;

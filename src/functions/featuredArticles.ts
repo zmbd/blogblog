@@ -1,6 +1,6 @@
 import { featuredArticlesType } from "../propTypes";
 
-const featuredArticles = (articles: featuredArticlesType, amount: number): featuredArticlesType => {
+export const featuredArticles = (articles: featuredArticlesType, amount: number): featuredArticlesType => {
     const newArticles: featuredArticlesType = [];
 
     if (amount > articles.length) amount = articles.length;
@@ -8,5 +8,3 @@ const featuredArticles = (articles: featuredArticlesType, amount: number): featu
 
     return newArticles;
 }
-
-export default featuredArticles;

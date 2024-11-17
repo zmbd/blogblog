@@ -7,8 +7,8 @@ import useWindowDimensions from "../hooks/useWindowDimensions";
 
 import "../App.css";
 import { Link, useOutletContext } from "react-router-dom";
-import showContentsObserver from "../functions/IntersectionObserver";
-import featuredArticles from "../functions/featuredArticles";
+import {showContentsObserver} from "../functions/IntersectionObserver";
+import { featuredArticles } from "../functions/featuredArticles";
 import { PostsContext } from "../context/PostsContext";
 import { ScreenContext } from "../context/screenContext";
 import { AboutContext } from "../context/AboutContext";
