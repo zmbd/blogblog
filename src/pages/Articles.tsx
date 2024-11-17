@@ -9,7 +9,7 @@ import { postType, propTypes } from "../propTypes";
 
 import TopicHeading from "../components/TopicHeading";
 import showContentsObserver from "../functions/IntersectionObserver";
-import pagination from "../functions/pagination";
+import { pagination } from "../functions/pagination";
 import Pagination from "../components/Pagination";
 import { PostsContext } from "../context/PostsContext";
 import { collection, getDocs } from "firebase/firestore";

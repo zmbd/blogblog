@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
-import { articlesPerPage, featuredPages } from "../functions/pagination";
+import { ARTICLES_PER_PAGE } from "../functions/pagination";
 import NavigationButton from "./NavigationButton";
+import {featuredPages} from "../functions/featuredPages";
 
 const Pagination = (props: any) => {
   const { posts, currentPage, handlePageChange } = props;
@@ -42,7 +43,7 @@ const Pagination = (props: any) => {
       })}
       <NavigationButton
         currentPage={currentPage}
-        breakpoint={Math.ceil(posts / articlesPerPage)}
+        breakpoint={Math.ceil(posts / ARTICLES_PER_PAGE)}
         handlePageChange={handlePageChange}
       >
         &raquo;
